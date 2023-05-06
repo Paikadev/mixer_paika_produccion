@@ -98,32 +98,23 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
     if (!participantNode.length) {
 
         
-        console.log(VoxeetSDK.conference.participants.size);
+        
 
-        if(VoxeetSDK.conference.participants.size == 1){
+        if(true){
             participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
-            .addClass("container")
-            .appendTo("#videos-container");
+            .addClass("container1")
+            .appendTo("#container-video-boostrap");
 
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
 
-        // Add a temporary banner with the name of the participant
-      
-        let name = $("<p />").text(VoxeetSDK.conference);
-        let bannerName = $("<div />")
-            .addClass("name-banner")
-            .append(name)
-            .appendTo(participantNode);
-
-        // Remove the banner after 15 seconds
-        setInterval(() => bannerName.remove(), 15000);
+       
         }
 
         // 2 Players
-        if(lVoxeetSDK.conference.participants.size == 2){
-            participantNode = $("<div />")
+        if(false){
+            participantNode = $("<div sm/>")
             .attr("id", "participant-" + participant.id)
             .addClass("container2")
             .appendTo("#videos-container");
@@ -132,7 +123,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         }
 
         // 3 Players
-        if(VoxeetSDK.conference.participants.size == 3){
+        if(false){
             participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
             .addClass("container3")
@@ -141,19 +132,11 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
 
-        // Add a temporary banner with the name of the participant
-        let name = $("<p />").text(lengthParticipants);
-        let bannerName = $("<div />")
-            .addClass("name-banner")
-            .append(name)
-            .appendTo(participantNode);
-
-        // Remove the banner after 15 seconds
-        setInterval(() => bannerName.remove(), 15000);
+       
         }
 
         // 4 Players
-        if(VoxeetSDK.conference.participants.sizes == 4){
+        if(false){
             participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
             .addClass("container4")
@@ -162,15 +145,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
 
-        // Add a temporary banner with the name of the participant
-        let name = $("<p />").text(participantNode.length);
-        let bannerName = $("<div />")
-            .addClass("name-banner")
-            .append(name)
-            .appendTo(participantNode);
-
-        // Remove the banner after 15 seconds
-        setInterval(() => bannerName.remove(), 15000);
+        
         }
        
     }
@@ -267,5 +242,8 @@ $(document).ready(() => {
     // https://docs.dolby.io/communications-apis/docs/initializing-javascript
 
 
-   
+
+    // Initialize the SDK
+// Please read the documentation at:
+
 });

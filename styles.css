@@ -1,9 +1,7 @@
 body {
-    background-image: url('background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 1080px;
-    height: 1920px;
+    background-color: #E6E6FA;
+    width: 100%;
+    height: 100%;
 }
 
 .hide {
@@ -21,8 +19,8 @@ body {
 
 
 #videos-container {
-    width: 1080px;
-    height: 1920px;
+    width: 100%;
+    height: 100%;
 }
 
 #videos-container .container2 {
@@ -45,11 +43,8 @@ body {
     width: 270px;
     height: 480px;
 }
-#videos-container .container {
-    margin-right: 10px;
-    position: relative;
-    width: 1080px;
-    height: 1920px;
+#container-video-boostrap .container1 {
+    width: 100%;
 }
 
 .name-banner {
