@@ -1,4 +1,5 @@
-//const socket = io('http://localhost:3000');
+
+
 
 const confId = 204;
 numberParticipants = 0;
@@ -116,35 +117,28 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
 
         // 2 Players
         if (true) {
-            if (numberParticipants == 1) {
-                participantNode = $('<div class="col" />')
+
+            participantNode = $('<div class="col-12" />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("container2")
-                .appendTo("#container-video-boostrap2-row1");
+                .addClass("Container2")
+                .appendTo("#container-video-boostrap2");
 
             $("<video autoplay playsInline muted />")
                 .appendTo(participantNode);
-            }
 
-            if (numberParticipants == 2) {
-                participantNode = $('<div class="col" />')
-                .attr("id", "participant-" + participant.id)
-                .addClass("container2")
-                .appendTo("#container-video-boostrap2-row2");
 
-            $("<video autoplay playsInline muted />")
-                .appendTo(participantNode);
-            }
+
+
 
 
         }
 
         // 3 Players
         if (false) {
-            participantNode = $('<div class="col-sm" />')
+            participantNode = $('<div class="col-6" />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("container3")
-                .appendTo("#videos-container3");
+                .addClass("Container2")
+                .appendTo("#container-video-boostrap2");
 
             $("<video autoplay playsInline muted />")
                 .appendTo(participantNode);
@@ -154,10 +148,10 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
 
         // 4 Players
         if (false) {
-            participantNode = $("<div />")
+            participantNode = $('<div class="col-6" />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("container4")
-                .appendTo("#videos-container4");
+                .addClass("Container2")
+                .appendTo("#container-video-boostrap2");
 
             $("<video autoplay playsInline muted />")
                 .appendTo(participantNode);
@@ -253,6 +247,8 @@ $(document).ready(() => {
     // Inform the mixer that the application is ready to start
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
 
+   
+
 
     // Initialize the SDK
     // Please read the documentation at:
@@ -260,5 +256,6 @@ $(document).ready(() => {
 
 
 
+   
 
 });

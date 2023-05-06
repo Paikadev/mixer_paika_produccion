@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,44 +7,91 @@
     <!-- Voxeet SDK and jQuery the CDN unpkg.com -->
     <script type="text/javascript" src="https://unpkg.com/@voxeet/voxeet-web-sdk@3.4"></script>
     <script type="text/javascript" src="https://unpkg.com/jquery"></script>
-    
+
     <!-- Mixer layout script and styles -->
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="events.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="hide">
-        <input type="hidden" value="accessToken" id="accessToken" name="accessToken"/>
-        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken"/>
-        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl"/>
-        <input type="hidden" value="catToken" id="catToken" name="catToken"/>
-        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId"/>
-        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId"/>
-        <input type="hidden" value="stream" id="layoutType" name="layoutType"/>
+        <input type="hidden" value="accessToken" id="accessToken" name="accessToken" />
+        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken" />
+        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl" />
+        <input type="hidden" value="catToken" id="catToken" name="catToken" />
+        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId" />
+        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId" />
+        <input type="hidden" value="stream" id="layoutType" name="layoutType" />
         <button id="joinConference">Join conference</button>
         <button id="replayConference">Replay conference</button>
     </div>
 
-    <div id="container-video-boostrap" style="background-color:Red;">
-    <div class="container" id="container-video-boostrap2" style="background-color:Blue;">
-        <div class="row" id="container-video-boostrap2-row1">
-            
+    <div id="container-video-boostrap">
+        <div class="row" id="container-video-boostrap2">
+
         </div>
-        <div class="row" id="container-video-boostrap2-row2"></div>
-    </div>
 
-    </div>
+        <br>
+        <br>
+        <div></div>
 
-    
-    <div id="live" class="hide">
-        <div class="circle"></div>
-        <span>Live</span>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <center>
+            <div id="cont1"
+                style="background-color:  rgba(11, 4, 4, 0.444);  width: 80%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
+
+            </div>
+        </center>
+
+        <center>
+            <div id="cont2"
+                style="background-color:  rgba(11, 4, 4, 0.444);  width: 10%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
+            </div>
+
+
+            <div id="live" class="hide">
+                <div class="circle"></div>
+                <span>Live</span>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+                integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+                crossorigin="anonymous"></script>
+
+            <script type='text/javascript'>
+                var socket = io.connect('http://192.168.1.65:9000');
+                // optionally use io('http://localhost:3000');
+                // but make *SURE* it matches the jScript src
+
+                socket.on('connect', function () {
+                    console.log('conectado!')
+                    socket.emit('join', "192");
+                })
+                socket.on('text', function (response) {
+                    if (response['text'] != "...") {
+                        document.getElementById('cont1').innerHTML = response['text'];
+                    }
+                });
+                socket.on('timer', function (response) {
+                    document.getElementById('cont2').innerHTML = response['timer'];
+                });
+
+            </script>
+
+
 </body>
+
 </html>
