@@ -23,11 +23,11 @@ body {
     height: 100%;
 }
 
-#videos-container .container2 {
-    margin-right: 10px;
-    position: relative;
-    width: 540px;
-    height: 960px;
+
+
+#container-video-boostrap2 .container2 {
+    width: 50%;
+    height: 50%;
 }
 
 #videos-container .container3 {

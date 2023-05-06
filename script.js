@@ -1,6 +1,7 @@
 //const socket = io('http://localhost:3000');
 
 const confId = 204;
+numberParticipants = 0;
 
 // Initialize the SDK with the access token
 const initializeVoxeetSDK = () => {
@@ -52,7 +53,7 @@ const joinConference = () => {
         },
         userParams: {}
     };
-    
+
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
@@ -81,12 +82,12 @@ const replayConference = () => {
         conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
         offset: 0
     };
-    
+
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
         // Replay the conference from the beginning
-        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true}))
+        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true }))
         .catch((err) => console.error(err));
 };
 
@@ -97,57 +98,73 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
 
     if (!participantNode.length) {
 
-        
-        
+        numberParticipants = numberParticipants + 1;
 
-        if(true){
-            participantNode = $("<div />")
-            .attr("id", "participant-" + participant.id)
-            .addClass("container1")
-            .appendTo("#container-video-boostrap");
+        console.log(numberParticipants);
 
-        $("<video autoplay playsInline muted />")
-            .appendTo(participantNode);
+        if (false) {
+            participantNode = $('<div class="col-sm" />')
+                .attr("id", "participant-" + participant.id)
+                .addClass("container1")
+                .appendTo("#container-video-boostrap");
 
-       
+            $("<video autoplay playsInline muted />")
+                .appendTo(participantNode);
+
+
         }
 
         // 2 Players
-        if(false){
-            participantNode = $("<div sm/>")
-            .attr("id", "participant-" + participant.id)
-            .addClass("container2")
-            .appendTo("#videos-container");
+        if (true) {
+            if (numberParticipants == 1) {
+                participantNode = $('<div class="col" />')
+                .attr("id", "participant-" + participant.id)
+                .addClass("container2")
+                .appendTo("#container-video-boostrap2-row1");
 
-        
+            $("<video autoplay playsInline muted />")
+                .appendTo(participantNode);
+            }
+
+            if (numberParticipants == 2) {
+                participantNode = $('<div class="col" />')
+                .attr("id", "participant-" + participant.id)
+                .addClass("container2")
+                .appendTo("#container-video-boostrap2-row2");
+
+            $("<video autoplay playsInline muted />")
+                .appendTo(participantNode);
+            }
+
+
         }
 
         // 3 Players
-        if(false){
-            participantNode = $("<div />")
-            .attr("id", "participant-" + participant.id)
-            .addClass("container3")
-            .appendTo("#videos-container3");
+        if (false) {
+            participantNode = $('<div class="col-sm" />')
+                .attr("id", "participant-" + participant.id)
+                .addClass("container3")
+                .appendTo("#videos-container3");
 
-        $("<video autoplay playsInline muted />")
-            .appendTo(participantNode);
+            $("<video autoplay playsInline muted />")
+                .appendTo(participantNode);
 
-       
+
         }
 
         // 4 Players
-        if(false){
+        if (false) {
             participantNode = $("<div />")
-            .attr("id", "participant-" + participant.id)
-            .addClass("container4")
-            .appendTo("#videos-container4");
+                .attr("id", "participant-" + participant.id)
+                .addClass("container4")
+                .appendTo("#videos-container4");
 
-        $("<video autoplay playsInline muted />")
-            .appendTo(participantNode);
+            $("<video autoplay playsInline muted />")
+                .appendTo(participantNode);
 
-        
+
         }
-       
+
     }
 
     // Attach the stream to the video element
@@ -226,7 +243,7 @@ VoxeetSDK.conference.on("ended", onConferenceEnded);
 $(document).ready(() => {
     $("#joinConference").click(joinConference);
     $("#replayConference").click(replayConference);
-    
+
     const layoutType = $("layoutType").val();
     if (layoutType === "stream" || layoutType === "hls") {
         // Display the live message for the live streams
@@ -243,7 +260,5 @@ $(document).ready(() => {
 
 
 
-    // Initialize the SDK
-// Please read the documentation at:
 
 });
