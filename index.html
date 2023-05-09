@@ -71,25 +71,7 @@
                 integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
                 crossorigin="anonymous"></script>
 
-            <script type='text/javascript'>
-                var socket = io.connect('http://13.52.68.186:9000');
-                // optionally use io('http://localhost:3000');
-                // but make *SURE* it matches the jScript src
-
-                socket.on('connect', function () {
-                    console.log('conectado!')
-                    socket.emit('join', "211");
-                })
-                socket.on('text', function (response) {
-                    if (response['text'] != "...") {
-                        document.getElementById('cont1').innerHTML = response['text'];
-                    }
-                });
-                socket.on('timer', function (response) {
-                    document.getElementById('cont2').innerHTML = response['timer'];
-                });
-
-            </script>
+           
 
 
 </body>

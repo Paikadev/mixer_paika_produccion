@@ -104,7 +104,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         console.log(numberParticipants);
 
         if (true) {
-            participantNode = $('<div class="col-12" />')
+            participantNode = $('<div class="row" />')
                 .attr("id", "participant-" + participant.id)
                 .addClass("container1")
                 .appendTo("#container-video-boostrap");
@@ -255,6 +255,28 @@ $(document).ready(() => {
     // https://docs.dolby.io/communications-apis/docs/initializing-javascript
 
 
+    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzU5MzU5NSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM2Nzk5OTV9.CCfwHCbYifZVE9feeAtpP_XoDXs5v9n_Vy7faD81PRotaAPCs3rtYTZu2XvBZ8v2Wldyl22ucH-zicUlRaruwg";
+    const conferenceId = "5d825cb8-7df3-47b6-8b53-73080b5823a8";
+
+    VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
+        return new Promise((resolve, reject) => {
+            if (isExpired) {
+                reject('The client access token has expired.');
+            } else {
+                resolve(clientAccessToken);
+            }
+        });
+    });
+
+    const mixer = { name: "Test", externalId: "Test" };
+    const joinOptions = { constraints: { video: false, audio: false } };
+    
+    // Open a session for the mixer
+    VoxeetSDK.session.open(mixer)
+        .then(() => VoxeetSDK.conference.fetch(conferenceId))
+        // Join the conference
+        .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
+        .catch((err) => console.error(err));
 
    
 
