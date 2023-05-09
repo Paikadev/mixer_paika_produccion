@@ -103,7 +103,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
 
         console.log(numberParticipants);
 
-        if (false) {
+        if (true) {
             participantNode = $('<div class="col-sm" />')
                 .attr("id", "participant-" + participant.id)
                 .addClass("container1")
@@ -116,7 +116,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         }
 
         // 2 Players
-        if (true) {
+        if (false) {
 
             participantNode = $('<div class="col-12" />')
                 .attr("id", "participant-" + participant.id)
