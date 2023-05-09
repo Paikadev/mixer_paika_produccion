@@ -104,7 +104,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         console.log(numberParticipants);
 
         if (true) {
-            participantNode = $('<div class="col-sm" />')
+            participantNode = $('<div class="col-12" />')
                 .attr("id", "participant-" + participant.id)
                 .addClass("container1")
                 .appendTo("#container-video-boostrap");
