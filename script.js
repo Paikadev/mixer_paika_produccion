@@ -256,7 +256,7 @@ $(document).ready(() => {
 
 
     const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzU5MzU5NSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM2Nzk5OTV9.CCfwHCbYifZVE9feeAtpP_XoDXs5v9n_Vy7faD81PRotaAPCs3rtYTZu2XvBZ8v2Wldyl22ucH-zicUlRaruwg";
-    const conferenceId = "5d825cb8-7df3-47b6-8b53-73080b5823a8";
+    const conferenceId = "75986e06-6a73-4212-a1d4-255902428079";
 
     VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
         return new Promise((resolve, reject) => {
