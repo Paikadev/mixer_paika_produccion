@@ -106,8 +106,8 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
         if (true) {
             participantNode = $('<div class="row" />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("container1")
-                .appendTo("#container-video-boostrap");
+                .addClass("contain")
+                .appendTo(".container-principal");
 
             $("<video autoplay playsInline muted />")
                 .appendTo(participantNode);
@@ -255,8 +255,8 @@ $(document).ready(() => {
     // https://docs.dolby.io/communications-apis/docs/initializing-javascript
 
 
-    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzU5MzU5NSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM2Nzk5OTV9.CCfwHCbYifZVE9feeAtpP_XoDXs5v9n_Vy7faD81PRotaAPCs3rtYTZu2XvBZ8v2Wldyl22ucH-zicUlRaruwg";
-    const conferenceId = "c9a3acca-11b1-4d2e-b546-785623229388";
+    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzY5OTQ0MCwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM3ODU4NDB9.SJnd1fNhnXgnXmksJ7IucpXisW3L_OZJXLq5_AVV8QQq90E5SFjOggEDjl-9Im7nHeisEx7mU5gO8cF8uHzWkw";
+    const conferenceId = "4c2b9c3f-87ce-4b3f-9de8-f689f806e6df";
 
     VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
         return new Promise((resolve, reject) => {

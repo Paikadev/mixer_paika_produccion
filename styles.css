@@ -25,16 +25,23 @@ body {
 
 
 
-#container-video-boostrap2 .container2 {
-    width: 50%;
-    height: 50%;
+.container-principal {
+    max-width: 1280px;
+    height: 1920px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    grid-template-rows: repeat(auto-fit,minmax(480px,1fr));
+    grid-gap: 20px;
+    background-color: black;
+    position: relative;
 }
 
-#videos-container .container3 {
-    margin-right: 10px;
-    position: relative;
-    width: 270px;
-    height: 480px;
+.container-secundario {
+    width: 780px;
+    height: 20px;
+    background-color: blue;
+    position: absolute;
+    z-index: 3;
 }
 
 #videos-container .container4 {

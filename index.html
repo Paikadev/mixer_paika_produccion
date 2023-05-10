@@ -29,49 +29,73 @@
         <button id="replayConference">Replay conference</button>
     </div>
 
-    <div id="container-video-boostrap">
-        <div class="row" id="container-video-boostrap2">
-
+    <div class="container-principal">
+        <div class="container-secundario">
+            <center>
+                <div id="cont1"
+                    style="background-color:  rgba(11, 4, 4, 0.444);  width: 80%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
+        
+                </div>
+            </center>
+        
+            <center>
+                <div id="cont2"
+                    style="background-color:  rgba(11, 4, 4, 0.444);  width: 20%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
+                </div>
+        
+        
+                <div id="live" class="hide">
+                    <div class="circle"></div>
+                    <span>Live</span>
+                </div>
+        
+            </center>
         </div>
+    </div>
 
-        <br>
-        <br>
-        <div></div>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const container = document.querySelector('.container-principal');
+        function addDivs(num) {
+            for (let i = 0; i < num; i++) {
+                const div = document.createElement('div');
+                div.textContent = "Esto es un div insertado con JS.";
+                div.setAttribute("class", "");
+                container.appendChild(div);
+            }
+        }
+
+        var socket = io.connect('http://13.52.68.186:9000');
+        socket.on('connect', function () {
+            console.log('conectado!')
+            socket.emit('join', "192");
+        })
+        socket.on('text', function (response) {
+            if (response['text'] != "...") {
+                document.getElementById('cont1').innerHTML = response['text'];
+            }
+        });
+        socket.on('timer', function (response) {
+            document.getElementById('cont2').innerHTML = response['timer'];
+        });
+    </script>
 
 
-
-        <center>
-            <div id="cont1"
-                style="background-color:  rgba(11, 4, 4, 0.444);  width: 80%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
-
-            </div>
-        </center>
-
-        <center>
-            <div id="cont2"
-                style="background-color:  rgba(11, 4, 4, 0.444);  width: 10%; color: white; font-size: 24px; font-family: 'Helvetica Neue', sans-serif; padding: 20px; line-height: 1.2; text-align: center;">
-            </div>
-
-
-            <div id="live" class="hide">
-                <div class="circle"></div>
-                <span>Live</span>
-            </div>
-
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
-                integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
-                crossorigin="anonymous"></script>
-
-           
 
 
 </body>
