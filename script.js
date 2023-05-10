@@ -256,27 +256,7 @@ $(document).ready(() => {
 
 
     const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzY5OTQ0MCwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM3ODU4NDB9.SJnd1fNhnXgnXmksJ7IucpXisW3L_OZJXLq5_AVV8QQq90E5SFjOggEDjl-9Im7nHeisEx7mU5gO8cF8uHzWkw";
-    const conferenceId = "4c2b9c3f-87ce-4b3f-9de8-f689f806e6df";
-
-    VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
-        return new Promise((resolve, reject) => {
-            if (isExpired) {
-                reject('The client access token has expired.');
-            } else {
-                resolve(clientAccessToken);
-            }
-        });
-    });
-
-    const mixer = { name: "Test", externalId: "Test" };
-    const joinOptions = { constraints: { video: false, audio: false } };
-    
-    // Open a session for the mixer
-    VoxeetSDK.session.open(mixer)
-        .then(() => VoxeetSDK.conference.fetch(conferenceId))
-        // Join the conference
-        .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
-        .catch((err) => console.error(err));
+   
 
    
 
