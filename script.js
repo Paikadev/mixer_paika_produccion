@@ -92,21 +92,51 @@ const replayConference = () => {
         .catch((err) => console.error(err));
 };
 
+var contenedorPrincipal;
+var numeroDivs;
+
+function initDiv() {
+    contenedorPrincipal =  document.querySelector('#container-principal');
+    numeroDivs = contenedorPrincipal.childElementCount;
+}
+
+
 
 // Add the video stream to the web page
 const addVideoNode = (participant, stream, lengthParticipants) => {
     let participantNode = $("#participant-" + participant.id);
-
+   
+    
     if (!participantNode.length) {
 
-        numberParticipants = numberParticipants + 1;
+       
+        console.log("numero de divs")
+        console.log(numeroDivs)
+        console.log("numero de divs*****")
 
-        console.log(numberParticipants);
+        if(true){
+            console.log("entro");
+            
 
-        if (true) {
-            participantNode = $('<div class="row" />')
+                const contenedorPrincipal =  document.querySelector('.grid1');
+                
+
+                participantNode = $("<div />")
+            .attr("id", "participant-" + participant.id)
+            .addClass("container")
+            .appendTo(".grid1");
+
+        $("<video autoplay playsInline muted />")
+            .appendTo(participantNode);
+
+        }
+
+
+
+        if (false) {
+            participantNode = $('<div />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("contain")
+                .addClass("video")
                 .appendTo(".container-principal");
 
             $("<video autoplay playsInline muted />")
@@ -120,7 +150,7 @@ const addVideoNode = (participant, stream, lengthParticipants) => {
 
             participantNode = $('<div class="col-12" />')
                 .attr("id", "participant-" + participant.id)
-                .addClass("Container2")
+                .addClass("Container")
                 .appendTo("#container-video-boostrap2");
 
             $("<video autoplay playsInline muted />")
@@ -247,7 +277,7 @@ $(document).ready(() => {
     // Inform the mixer that the application is ready to start
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
 
-   
+
 
 
     // Initialize the SDK
@@ -255,9 +285,6 @@ $(document).ready(() => {
     // https://docs.dolby.io/communications-apis/docs/initializing-javascript
 
 
-    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4MzY5OTQ0MCwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODM3ODU4NDB9.SJnd1fNhnXgnXmksJ7IucpXisW3L_OZJXLq5_AVV8QQq90E5SFjOggEDjl-9Im7nHeisEx7mU5gO8cF8uHzWkw";
-   
-
-   
+    
 
 });
