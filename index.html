@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,83 +6,25 @@
     <!-- Voxeet SDK and jQuery the CDN unpkg.com -->
     <script type="text/javascript" src="https://unpkg.com/@voxeet/voxeet-web-sdk@3.4"></script>
     <script type="text/javascript" src="https://unpkg.com/jquery"></script>
-
+    
     <!-- Mixer layout script and styles -->
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="events.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
-
 <body>
     <div class="hide">
-        <input type="hidden" value="accessToken" id="accessToken" name="accessToken" />
-        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken" />
-        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl" />
-        <input type="hidden" value="catToken" id="catToken" name="catToken" />
-        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId" />
-        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId" />
-        <input type="hidden" value="stream" id="layoutType" name="layoutType" />
+        <input type="hidden" value="accessToken" id="accessToken" name="accessToken"/>
+        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken"/>
+        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl"/>
+        <input type="hidden" value="catToken" id="catToken" name="catToken"/>
+        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId"/>
+        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId"/>
+        <input type="hidden" value="stream" id="layoutType" name="layoutType"/>
         <button id="joinConference">Join conference</button>
         <button id="replayConference">Replay conference</button>
     </div>
 
-    <div class="grid1">
-         
-        
-    </div>
-
-    <div class="container-secundario"></div>>
-    
-
-
-
-
-
-
-
-    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
-        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
-        crossorigin="anonymous"></script>
-
-    <script type='text/javascript'>
-        const container = document.querySelector('.container-secundario');
-        function addDivs(num) {
-            for (let i = 0; i < num; i++) {
-                const div = document.createElement('div');
-                div.textContent = "Esto es un div insertado con JS.";
-                div.setAttribute("class", "");
-                container.appendChild(div);
-            }
-        }
-
-        var socket = io.connect('http://13.52.68.186:9000');
-        socket.on('connect', function () {
-            console.log('conectado!')
-            socket.emit('join', "192");
-        })
-        socket.on('text', function (response) {
-            if (response['text'] != "...") {
-
-                while(container.firstChild){
-                    container.removeChild(container.firstChild);
-                }
-                const div = document.createElement('div');
-                div.setAttribute("class", "text-prompt");
-                
-                div.textContent = ""+ response['text'];
-                
-                container.appendChild(div);
-                console.log(response['text']);
-            }
-        });
-        socket.on('timer', function (response) {
-            document.getElementById('cont2').innerHTML = response['timer'];
-        });
-    </script>
-
-
-
-
+    <div id="videos-container"></div>
 </body>
-
 </html>

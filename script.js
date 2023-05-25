@@ -1,9 +1,3 @@
-
-
-
-const confId = 204;
-numberParticipants = 0;
-
 // Initialize the SDK with the access token
 const initializeVoxeetSDK = () => {
     // Load the settings injected by the mixer
@@ -35,7 +29,6 @@ const joinConference = () => {
     const conferenceId = $("#conferenceId").val();
     const thirdPartyId = $("#thirdPartyId").val();
     const layoutType = $("#layoutType").val();
-    confId = conferenceId;
 
     const mixer = {
         name: "Mixer",
@@ -54,7 +47,7 @@ const joinConference = () => {
         },
         userParams: {}
     };
-
+    
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
@@ -83,112 +76,33 @@ const replayConference = () => {
         conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
         offset: 0
     };
-
+    
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
         // Replay the conference from the beginning
-        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true }))
+        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true}))
         .catch((err) => console.error(err));
 };
 
-var contenedorPrincipal;
-var numeroDivs;
-
-function initDiv() {
-    contenedorPrincipal =  document.querySelector('#container-principal');
-    numeroDivs = contenedorPrincipal.childElementCount;
-}
-
-
 
 // Add the video stream to the web page
-const addVideoNode = (participant, stream, lengthParticipants) => {
+const addVideoNode = (participant, stream) => {
     let participantNode = $("#participant-" + participant.id);
-   
-    
+
     if (!participantNode.length) {
-
-       
-        console.log("numero de divs")
-        console.log(numeroDivs)
-        console.log("numero de divs*****")
-
-        if(true){
-            console.log("entro");
-            
-
-                const contenedorPrincipal =  document.querySelector('.grid1');
-                
-
-                participantNode = $("<div />")
+        participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
             .addClass("container")
-            .appendTo(".grid1");
+            .appendTo("#videos-container");
 
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
 
-        }
+        
 
-
-
-        if (false) {
-            participantNode = $('<div />')
-                .attr("id", "participant-" + participant.id)
-                .addClass("video")
-                .appendTo(".container-principal");
-
-            $("<video autoplay playsInline muted />")
-                .appendTo(participantNode);
-
-
-        }
-
-        // 2 Players
-        if (false) {
-
-            participantNode = $('<div class="col-12" />')
-                .attr("id", "participant-" + participant.id)
-                .addClass("Container")
-                .appendTo("#container-video-boostrap2");
-
-            $("<video autoplay playsInline muted />")
-                .appendTo(participantNode);
-
-
-
-
-
-
-        }
-
-        // 3 Players
-        if (false) {
-            participantNode = $('<div class="col-6" />')
-                .attr("id", "participant-" + participant.id)
-                .addClass("Container2")
-                .appendTo("#container-video-boostrap2");
-
-            $("<video autoplay playsInline muted />")
-                .appendTo(participantNode);
-
-
-        }
-
-        // 4 Players
-        if (false) {
-            participantNode = $('<div class="col-6" />')
-                .attr("id", "participant-" + participant.id)
-                .addClass("Container2")
-                .appendTo("#container-video-boostrap2");
-
-            $("<video autoplay playsInline muted />")
-                .appendTo(participantNode);
-
-
-        }
-
+        // Remove the banner after 15 seconds
+       // setInterval(() => bannerName.remove(), 15000);
     }
 
     // Attach the stream to the video element
@@ -267,7 +181,7 @@ VoxeetSDK.conference.on("ended", onConferenceEnded);
 $(document).ready(() => {
     $("#joinConference").click(joinConference);
     $("#replayConference").click(replayConference);
-
+    
     const layoutType = $("layoutType").val();
     if (layoutType === "stream" || layoutType === "hls") {
         // Display the live message for the live streams
@@ -278,13 +192,7 @@ $(document).ready(() => {
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
 
 
-
-
-    // Initialize the SDK
-    // Please read the documentation at:
-    // https://docs.dolby.io/communications-apis/docs/initializing-javascript
-
+   
 
     
-
 });
