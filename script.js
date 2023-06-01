@@ -231,30 +231,6 @@ $(document).ready(() => {
 
 
     // Initialize the SDK
-    // Please read the documentation at:
-    // https://docs.dolby.io/communications-apis/docs/initializing-javascript
-    // Insert your client access token (from the Dolby.io dashboard) and conference id
-    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4NTU3ODkxOSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODU2NjUzMTl9.P_ZbwD2K-EQDyinZqTtXBN-Mi83VcYE8btZPHpH2fi2ELVNdKRh3lWs6HCjdN6_euwlAvkyytO6_20rPgY9FMA";
-    const conferenceId = "3fd986c2-cc1b-47d3-8a09-93ce4d167465";
-
-    VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
-        return new Promise((resolve, reject) => {
-            if (isExpired) {
-                reject('The client access token has expired.');
-            } else {
-                resolve(clientAccessToken);
-            }
-        });
-    });
-
-    const mixer = { name: "Test", externalId: "Test" };
-    const joinOptions = { constraints: { video: false, audio: false } };
-
-    // Open a session for the mixer
-    VoxeetSDK.session.open(mixer)
-        .then(() => VoxeetSDK.conference.fetch(conferenceId))
-        // Join the conference
-        .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
-        .catch((err) => console.error(err));
+    
 
 });
