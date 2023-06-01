@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,25 +7,99 @@
     <!-- Voxeet SDK and jQuery the CDN unpkg.com -->
     <script type="text/javascript" src="https://unpkg.com/@voxeet/voxeet-web-sdk@3.4"></script>
     <script type="text/javascript" src="https://unpkg.com/jquery"></script>
-    
+
     <!-- Mixer layout script and styles -->
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="events.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="hide">
-        <input type="hidden" value="accessToken" id="accessToken" name="accessToken"/>
-        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken"/>
-        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl"/>
-        <input type="hidden" value="catToken" id="catToken" name="catToken"/>
-        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId"/>
-        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId"/>
-        <input type="hidden" value="stream" id="layoutType" name="layoutType"/>
+        <input type="hidden" value="accessToken" id="accessToken" name="accessToken" />
+        <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken" />
+        <input type="hidden" value="refreshUrl" id="refreshUrl" name="refreshUrl" />
+        <input type="hidden" value="catToken" id="catToken" name="catToken" />
+        <input type="hidden" value="voxeet" id="conferenceId" name="conferenceId" />
+        <input type="hidden" value="1234" id="thirdPartyId" name="thirdPartyId" />
+        <input type="hidden" value="stream" id="layoutType" name="layoutType" />
         <button id="joinConference">Join conference</button>
         <button id="replayConference">Replay conference</button>
     </div>
 
-    <center><div id="videos-container"></div></center>
+    <center>
+        <div id="padre" class="row"></div>
+    </center>
+
+
+    <script>
+        // Obtén el div padre
+        const padre = document.getElementById('padre');
+
+        // Agrega los divs hijos dependiendo del caso
+        function renderizarDivs(cantidad) {
+            // Limpia los divs hijos existentes
+            while (padre.firstChild) {
+                padre.removeChild(padre.firstChild);
+            }
+
+            // Crea y agrega los nuevos divs hijos
+            for (let i = 0; i < cantidad; i++) {
+                const hijo = document.createElement('div');
+                hijo.style.width = `${1080 / cantidad}px`; // Tamaño igual para todos los divs hijos
+                hijo.style.height = `${1080 / cantidad}px`; // Tamaño igual para todos los divs hijos
+                padre.appendChild(hijo);
+            }
+        }
+
+        // Llama a la función para renderizar los divs según el caso
+        function renderizarSegunCaso() {
+            const cantidadDivs = padre.children.length;
+
+            switch (cantidadDivs) {
+                case 1:
+                    renderizarDivs(1);
+                    break;
+                case 2:
+                    renderizarDivs(2);
+                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
+                    padre.lastChild.style.height = '50%'; // Segundo div hijo ocupa la mitad de abajo
+                    break;
+                case 3:
+                    renderizarDivs(3);
+                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
+                    padre.lastChild.style.height = '50%'; // Último div hijo ocupa la mitad de abajo
+                    break;
+                case 4:
+                    renderizarDivs(4);
+                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
+                    padre.childNodes[1].style.height = '50%'; // Segundo div hijo ocupa la mitad de arriba
+                    padre.lastChild.style.height = '50%'; // Último div hijo ocupa la mitad de abajo
+                    padre.childNodes[2].style.height = '50%'; // Penúltimo div hijo ocupa la mitad de abajo
+                    break;
+                default:
+                    console.log('Cantidad no válida');
+            }
+        }
+
+        // Ejemplo de uso:
+        renderizarSegunCaso();
+
+
+    </script>
+
 </body>
+
 </html>

@@ -47,7 +47,7 @@ const joinConference = () => {
         },
         userParams: {}
     };
-    
+
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
@@ -76,12 +76,12 @@ const replayConference = () => {
         conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
         offset: 0
     };
-    
+
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
         // Replay the conference from the beginning
-        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true}))
+        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true }))
         .catch((err) => console.error(err));
 };
 
@@ -91,18 +91,55 @@ const addVideoNode = (participant, stream) => {
     let participantNode = $("#participant-" + participant.id);
 
     if (!participantNode.length) {
-        participantNode = $("<div />")
-            .attr("id", "participant-" + participant.id)
-            .addClass("container")
-            .appendTo("#videos-container");
 
-        $("<video autoplay playsInline muted />")
-            .appendTo(participantNode);
+        switch (0) {
+            case 0:
+                participantNode = $("<div />")
+                    .attr("id", "participant-" + participant.id)
+                    .attr("class", "col-md-6s")
+                    .addClass("container")
+                    .appendTo("#padre");
 
-        
+                $("<video autoplay playsInline muted />")
+                    .appendTo(participantNode);
+                break;
+            case 2:
+                participantNode = $("<div />")
+                    .attr("id", "participant-" + participant.id)
+                    .addClass("container2")
+                    .appendTo("#padre");
+
+                $("<video autoplay playsInline muted />")
+                    .appendTo(participantNode); // Segundo div hijo ocupa la mitad de abajo
+                break;
+            case 3:
+                participantNode = $("<div />")
+                    .attr("id", "participant-" + participant.id)
+                    .addClass("container2")
+                    .appendTo("#padre");
+
+                $("<video autoplay playsInline muted />")
+                    .appendTo(participantNode);// Último div hijo ocupa la mitad de abajo
+                break;
+            case 4:
+                participantNode = $("<div />")
+                    .attr("id", "participant-" + participant.id)
+                    .addClass("container2")
+                    .appendTo("#padre");
+
+                $("<video autoplay playsInline muted />")
+                    .appendTo(participantNode); // Penúltimo div hijo ocupa la mitad de abajo
+                break;
+            default:
+                console.log('Cantidad no válida');
+        }
+
+
+        console.log("tamaño" + participantNode.length);
+
 
         // Remove the banner after 15 seconds
-       // setInterval(() => bannerName.remove(), 15000);
+        // setInterval(() => bannerName.remove(), 15000);
     }
 
     // Attach the stream to the video element
@@ -181,7 +218,7 @@ VoxeetSDK.conference.on("ended", onConferenceEnded);
 $(document).ready(() => {
     $("#joinConference").click(joinConference);
     $("#replayConference").click(replayConference);
-    
+
     const layoutType = $("layoutType").val();
     if (layoutType === "stream" || layoutType === "hls") {
         // Display the live message for the live streams
@@ -192,7 +229,32 @@ $(document).ready(() => {
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
 
 
-   
 
-    
+    // Initialize the SDK
+    // Please read the documentation at:
+    // https://docs.dolby.io/communications-apis/docs/initializing-javascript
+    // Insert your client access token (from the Dolby.io dashboard) and conference id
+    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4NTU3ODkxOSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODU2NjUzMTl9.P_ZbwD2K-EQDyinZqTtXBN-Mi83VcYE8btZPHpH2fi2ELVNdKRh3lWs6HCjdN6_euwlAvkyytO6_20rPgY9FMA";
+    const conferenceId = "3fd986c2-cc1b-47d3-8a09-93ce4d167465";
+
+    VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
+        return new Promise((resolve, reject) => {
+            if (isExpired) {
+                reject('The client access token has expired.');
+            } else {
+                resolve(clientAccessToken);
+            }
+        });
+    });
+
+    const mixer = { name: "Test", externalId: "Test" };
+    const joinOptions = { constraints: { video: false, audio: false } };
+
+    // Open a session for the mixer
+    VoxeetSDK.session.open(mixer)
+        .then(() => VoxeetSDK.conference.fetch(conferenceId))
+        // Join the conference
+        .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
+        .catch((err) => console.error(err));
+
 });
