@@ -1,32 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Voxeet SDK and jQuery the CDN unpkg.com -->
-    <script type="text/javascript" src="https://unpkg.com/@voxeet/voxeet-web-sdk@3.4"></script>
-    <script type="text/javascript" src="https://unpkg.com/jquery"></script>
-
-    <!-- Mixer layout script and styles -->
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript" src="events.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <title>Paika Mixer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+
     <div class="hide">
         <input type="hidden" value="accessToken" id="accessToken" name="accessToken" />
         <input type="hidden" value="refreshToken" id="refreshToken" name="refreshToken" />
@@ -39,67 +22,77 @@
         <button id="replayConference">Replay conference</button>
     </div>
 
-    <center>
-        <div id="padre" class="row"></div>
-    </center>
 
 
+
+
+
+
+    <div id="blueDiv"></div>
+    <div id="greenDiv"></div>
+    <div id="redDivContainer">
+        <div class="redDiv">
+            <img src="image.jpg" alt="Image" style="width: 200px;">
+        </div>
+        <div class="redDiv videos-container">
+            <p>Camara</p>
+        </div>
+        <div class="redDiv">
+            <div id="textPrompt"></div>
+            <div id="timerPrompt"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        // Obtén el div padre
-        const padre = document.getElementById('padre');
+        var socket = io.connect('http://13.52.68.186:9000');
 
-        // Agrega los divs hijos dependiendo del caso
-        function renderizarDivs(cantidad) {
-            // Limpia los divs hijos existentes
-            while (padre.firstChild) {
-                padre.removeChild(padre.firstChild);
+        var lobbyShow = true;
+
+
+        socket.on('connect', function () {
+            console.log('conectado!')
+            socket.emit('join', "192");
+            document.getElementById('greenDiv').style.display = 'none';
+            document.getElementById('blueDiv').style.display = 'block';
+            document.querySelectorAll('.redDiv').forEach(div => {
+                div.style.display = 'none';
+            });
+        })
+        socket.on('text', function (response) {
+            console.log(response['text'])
+            if (response['text'] != "...") {
+                document.getElementById('textPrompt').innerHTML = response['text'];
+
+            }
+        });
+        socket.on('timer', function (response) {
+            document.getElementById('timerPrompt').innerHTML = response['timer'];
+        });
+
+        socket.on('start', function (response) {
+            console.log("Start param")
+            console.log(response['start'])
+            if (lobbyShow === true) {
+                if (response['start'] === 0) {
+                    document.getElementById('blueDiv').style.display = 'block';
+                    document.querySelectorAll('.redDiv').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                } else if (response['start'] === 1) {
+                    document.getElementById('blueDiv').style.display = 'none';
+                    document.querySelectorAll('.redDiv').forEach(div => {
+                        div.style.display = 'block';
+                    });
+                }
+
+                lobbyShow = false
             }
 
-            // Crea y agrega los nuevos divs hijos
-            for (let i = 0; i < cantidad; i++) {
-                const hijo = document.createElement('div');
-                hijo.style.width = `${1080 / cantidad}px`; // Tamaño igual para todos los divs hijos
-                hijo.style.height = `${1080 / cantidad}px`; // Tamaño igual para todos los divs hijos
-                padre.appendChild(hijo);
-            }
-        }
-
-        // Llama a la función para renderizar los divs según el caso
-        function renderizarSegunCaso() {
-            const cantidadDivs = padre.children.length;
-
-            switch (cantidadDivs) {
-                case 1:
-                    renderizarDivs(1);
-                    break;
-                case 2:
-                    renderizarDivs(2);
-                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
-                    padre.lastChild.style.height = '50%'; // Segundo div hijo ocupa la mitad de abajo
-                    break;
-                case 3:
-                    renderizarDivs(3);
-                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
-                    padre.lastChild.style.height = '50%'; // Último div hijo ocupa la mitad de abajo
-                    break;
-                case 4:
-                    renderizarDivs(4);
-                    padre.firstChild.style.height = '50%'; // Primer div hijo ocupa la mitad de arriba
-                    padre.childNodes[1].style.height = '50%'; // Segundo div hijo ocupa la mitad de arriba
-                    padre.lastChild.style.height = '50%'; // Último div hijo ocupa la mitad de abajo
-                    padre.childNodes[2].style.height = '50%'; // Penúltimo div hijo ocupa la mitad de abajo
-                    break;
-                default:
-                    console.log('Cantidad no válida');
-            }
-        }
-
-        // Ejemplo de uso:
-        renderizarSegunCaso();
-
-
+            console.log("lobby state")
+            console.log(lobbyShow)
+        });
     </script>
-
 </body>
 
 </html>

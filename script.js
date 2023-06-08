@@ -47,7 +47,7 @@ const joinConference = () => {
         },
         userParams: {}
     };
-
+    
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
@@ -76,12 +76,12 @@ const replayConference = () => {
         conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
         offset: 0
     };
-
+    
     // Open a session for the mixer
     VoxeetSDK.session.open(mixer)
         .then(() => VoxeetSDK.conference.fetch(conferenceId))
         // Replay the conference from the beginning
-        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true }))
+        .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true}))
         .catch((err) => console.error(err));
 };
 
@@ -91,55 +91,15 @@ const addVideoNode = (participant, stream) => {
     let participantNode = $("#participant-" + participant.id);
 
     if (!participantNode.length) {
+        participantNode = $("<div />")
+            .attr("id", "participant-" + participant.id)
+            .addClass("container")
+            .appendTo("#videos-container");
 
-        switch (0) {
-            case 0:
-                participantNode = $("<div />")
-                    .attr("id", "participant-" + participant.id)
-                    .attr("class", "col-md-6s")
-                    .addClass("container")
-                    .appendTo("#padre");
+        $("<video autoplay playsInline muted />")
+            .appendTo(participantNode);
 
-                $("<video autoplay playsInline muted />")
-                    .appendTo(participantNode);
-                break;
-            case 2:
-                participantNode = $("<div />")
-                    .attr("id", "participant-" + participant.id)
-                    .addClass("container2")
-                    .appendTo("#padre");
-
-                $("<video autoplay playsInline muted />")
-                    .appendTo(participantNode); // Segundo div hijo ocupa la mitad de abajo
-                break;
-            case 3:
-                participantNode = $("<div />")
-                    .attr("id", "participant-" + participant.id)
-                    .addClass("container2")
-                    .appendTo("#padre");
-
-                $("<video autoplay playsInline muted />")
-                    .appendTo(participantNode);// Último div hijo ocupa la mitad de abajo
-                break;
-            case 4:
-                participantNode = $("<div />")
-                    .attr("id", "participant-" + participant.id)
-                    .addClass("container2")
-                    .appendTo("#padre");
-
-                $("<video autoplay playsInline muted />")
-                    .appendTo(participantNode); // Penúltimo div hijo ocupa la mitad de abajo
-                break;
-            default:
-                console.log('Cantidad no válida');
-        }
-
-
-        console.log("tamaño" + participantNode.length);
-
-
-        // Remove the banner after 15 seconds
-        // setInterval(() => bannerName.remove(), 15000);
+       
     }
 
     // Attach the stream to the video element
@@ -169,10 +129,7 @@ const addScreenShareNode = (stream) => {
     navigator.attachMediaStream(videoNode.get(0), stream);
 };
 
-// Remove the screen share stream from the web page
-const removeScreenShareNode = () => {
-    $("#screenshare").remove();
-};
+
 
 
 // Add a Video player to the web page
@@ -218,19 +175,16 @@ VoxeetSDK.conference.on("ended", onConferenceEnded);
 $(document).ready(() => {
     $("#joinConference").click(joinConference);
     $("#replayConference").click(replayConference);
-
+    
     const layoutType = $("layoutType").val();
     if (layoutType === "stream" || layoutType === "hls") {
         // Display the live message for the live streams
         $("#live").removeClass("hide");
     }
 
+    // Remove this line, this is just a test
+    $("#live").removeClass("hide");
+
     // Inform the mixer that the application is ready to start
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
-
-
-
-    // Initialize the SDK
-    
-
 });
