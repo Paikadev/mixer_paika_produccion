@@ -53,7 +53,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://13.52.68.186:9000');
+        var socket = io.connect('https://13.52.68.186:443');
 
         var lobbyShow = true;
 
@@ -62,7 +62,7 @@
             console.log('conectado!')
             socket.emit('join', "222");
             document.getElementById('greenDiv').style.display = 'none';
-            document.getElementById('blueDiv').style.display = 'block';
+            document.getElementById('blueDivs').style.display = 'block';
             document.querySelectorAll('.redDiv').forEach(div => {
                 div.style.display = 'none';
             });
