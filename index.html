@@ -45,42 +45,89 @@
         <div class="redDiv videos-container">
             <p>Camara</p>
         </div>
-        <div class="redDiv">
-            <div id="textPrompt"></div>
-            <div id="timerPrompt"></div>
+        <div class="redDiv" id="divInfo">
+            <div id="textPrompt">
+            </div>
+            <div id="timerPrompt">
+                15
+            </div>
+            <div id="divTypePrompt">
+               
+            </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        var socket = io.connect('https://13.52.68.186:443');
+        var socket = io.connect('http://13.52.68.186:9000');
 
         var lobbyShow = true;
+        var type = "";
 
 
         socket.on('connect', function () {
             console.log('conectado!')
-            socket.emit('join', "222");
+            socket.emit('join', "224");
             document.getElementById('greenDiv').style.display = 'none';
-            document.getElementById('blueDivs').style.display = 'block';
+            document.getElementById('blueDiv').style.display = 'block';
             document.querySelectorAll('.redDiv').forEach(div => {
                 div.style.display = 'none';
             });
         })
         socket.on('text', function (response) {
-            console.log(response['text'])
             if (response['text'] != "...") {
                 document.getElementById('textPrompt').innerHTML = response['text'];
-
+                
             }
         });
+        socket.on('type', function (response) {
+            console.log(response['type'])
+            if (response['type'] === "Votes") {
+                document.getElementById('divTypePrompt').innerHTML = '<div class="w3-container w3-blue w3-round-xlarge" style="width:25%">25%</div>';
+                console.log("Entro chatVotes")
+            }
+            if (response['type'] === "MultipleOptions") {
+                console.log("Entró multiple options")
+                //document.getElementById('divTypePrompt').innerHTML = '<div id="columnaOptions">';
+            }
+        });
+
         socket.on('timer', function (response) {
             document.getElementById('timerPrompt').innerHTML = response['timer'];
+            if(response['timer'] === 0){
+                document.getElementById('divTypePrompt').innerHTML = '';
+            }
+        });
+
+        socket.on('option_1', function (response) {
+            console.log(response['option_1'])
+            var divElement = document.getElementById('divTypePrompt');
+            var contenidoActual = divElement.innerHTML;
+            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1']+'</div>';
+            divElement.innerHTML = nuevoContenido;
+        });
+        socket.on('option_2', function (response) {
+            var divElement = document.getElementById('divTypePrompt');
+            var contenidoActual = divElement.innerHTML;
+            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2']+'</div>';
+            divElement.innerHTML = nuevoContenido;
+        });
+        socket.on('option_3', function (response) {
+            var divElement = document.getElementById('divTypePrompt');
+            var contenidoActual = divElement.innerHTML;
+            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3']+'</div>';
+            divElement.innerHTML = nuevoContenido;
+             });
+
+        socket.on('option_4', function (response) {
+            var divElement = document.getElementById('divTypePrompt');
+            var contenidoActual = divElement.innerHTML;
+            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4']+'</div>';
+            divElement.innerHTML = nuevoContenido;
         });
 
         socket.on('start', function (response) {
-            console.log("Start param")
-            console.log(response['start'])
+            console.log("Start param" + response['start'])
             if (lobbyShow === true) {
                 if (response['start'] === 0) {
                     document.getElementById('blueDiv').style.display = 'block';
@@ -96,9 +143,6 @@
 
                 lobbyShow = false
             }
-
-            console.log("lobby state")
-            console.log(lobbyShow)
         });
     </script>
 </body>
