@@ -129,7 +129,10 @@ const addScreenShareNode = (stream) => {
     navigator.attachMediaStream(videoNode.get(0), stream);
 };
 
-
+// Remove the screen share stream from the web page
+const removeScreenShareNode = () => {
+    $("#screenshare").remove();
+};
 
 
 // Add a Video player to the web page
@@ -182,9 +185,34 @@ $(document).ready(() => {
         $("#live").removeClass("hide");
     }
 
-    // Remove this line, this is just a test
-    $("#live").removeClass("hide");
-
     // Inform the mixer that the application is ready to start
     $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
+
+
+    // Initialize the SDK
+    // Please read the documentation at:
+    // https://docs.dolby.io/communications-apis/docs/initializing-javascript
+    // Insert your client access token (from the Dolby.io dashboard) and conference id
+    const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4NzYzMDA3NSwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODc3MTY0NzV9.CiMVQaSjTiHHNOxCIO2HAb763o8Au_zr5XDZpc2CjbTvYghxrkOTycxzj8i2vCJFVlaen4mSqHUW3YhE4BzvrQ";
+    const conferenceId = "e7da7ed2-17fb-4dae-afaf-2e90491cfff1";
+
+    VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
+        return new Promise((resolve, reject) => {
+            if (isExpired) {
+                reject('The client access token has expired.');
+            } else {
+                resolve(clientAccessToken);
+            }
+        });
+    });
+
+    const mixer = { name: "Test", externalId: "Test" };
+    const joinOptions = { constraints: { video: false, audio: false } };
+    
+    // Open a session for the mixer
+    VoxeetSDK.session.open(mixer)
+        .then(() => VoxeetSDK.conference.fetch(conferenceId))
+        // Join the conference
+        .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
+        .catch((err) => console.error(err));
 });

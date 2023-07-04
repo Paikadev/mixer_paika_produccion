@@ -1,98 +1,156 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  position: relative;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 #blueDiv {
-    width: 1920px;
-    height: 1080px;
-    background-color: blue;
-    display: none;
+  width: 1920px;
+  height: 1080px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 #greenDiv {
-    width: 1920px;
-    height: 1080px;
-    background-color: blue;
-    display: none;
+  width: 1920px;
+  height: 1080px;
+  background-color: blue;
+  display: none;
 }
 
 #redDivContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .redDiv {
-    background-color: brown;
-    width: 640px;
-    height: 1080px;
-    margin-right: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    font-size: 24px;
+  width: 640px;
+  height: 1080px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 24px;
 }
 
 #textPrompt {
-    text-align: justify;
-    text-align-last: center;
-    background-color: rgba(0, 128, 0, 0.6);
-    border-radius: 10px;
-    padding: 10px;
-    position: relative;
-    top: 20px; /* Mantenemos la posición superior */
-    left: 50%; /* Centramos horizontalmente */
-    transform: translateX(-50%);
-  }
+  text-align: justify;
+  text-align-last: center;
+  background-color: rgba(67, 91, 102, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  top: 20px; /* Mantenemos la posición superior */
+  left: 50%; /* Centramos horizontalmente */
+  transform: translateX(-50%);
+}
 
-  #timerPrompt {
-    text-align: justify;
-    text-align-last: center;
-    background-color: rgba(0, 128, 0, 0.6);
-    border-radius: 10px;
-    padding: 10px;
-    position: relative;
-    top: 20px; /* Mantenemos la posición superior */
-    left: 50%; /* Centramos horizontalmente */
-    transform: translateX(-50%);
-    width: 30px;
-  }
-  #divTypePrompt {
-    text-align: justify;
-    text-align-last: center;
-    border-radius: 10px;
-    padding: 10px;
-    position: relative;
-    top: 30%; /* Mantenemos la posición superior */
-    left: 50%; /* Centramos horizontalmente */
-    transform: translateX(-50%);
-    width: 350px;
-    height: 500px;
-    margin: 5px;
-  }
+#timerPrompt {
+  text-align: justify;
+  text-align-last: center;
+  background-color: rgba(67, 91, 102, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  top: 20px; /* Mantenemos la posición superior */
+  left: 50%; /* Centramos horizontalmente */
+  transform: translateX(-50%);
+  width: 30px;
+}
+#divTypePrompt {
+  text-align: justify;
+  text-align-last: center;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  top: 30%; /* Mantenemos la posición superior */
+  left: 50%; /* Centramos horizontalmente */
+  transform: translateX(-50%);
+  width: 350px;
+  height: 500px;
+  margin: 5px;
+}
 
-  #columnaOptions {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    background-color: #4A3B8B;
-    border-radius: 5px;
-    height: 50px;
-  }
+#columnaOptions {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: #4A3B8B;
+  border-radius: 5px;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#columnaPlayers{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: rgba(67, 91, 102, 0.3);
+  border-radius: 5px;
+  height: 50px;
+  width: 600px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: azure;
+  position: relative;
+  top: 30%;
+  left: 35%;
+}
 
 
-  
-  
-  
+#imagePromptSrc{
+  width: 310px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#imgPrompt{
+  display: relative;
+}
+
+
 
 
 video {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+}
+
+.progress-bar {
+width: 200px;
+height: 20px;
+background-color: lightgray;
+border-radius: 10px;
+position: relative;
+}
+
+.progress-bar__fill {
+height: 100%;
+background-color: #4A3B8B;
+border-radius: 10px;
+width: 50%;
+}
+
+.progress-bar__text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
 }
