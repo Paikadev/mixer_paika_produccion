@@ -67,7 +67,7 @@
 
 
 
-        var socket = io.connect('http://13.52.68.186:9000');
+        var socket = io.connect('https://equatorial-jungle-koi.glitch.me/');
 
         var lobbyShow = true;
         var type = "";
@@ -386,7 +386,7 @@
             // https://docs.dolby.io/communications-apis/docs/initializing-javascript
             // Insert your client access token (from the Dolby.io dashboard) and conference id
 
-            const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4ODY0NzE2MCwic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODg3MzM1NjB9.p4iR5k7T8LsM0bjwvpIbKwyuCZqYlnNEYCq-qDsnBlObMJjR5uirQjtN406te_4OSOpJ3jHV7DbAY5kwJTzi5Q";
+            const clientAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkb2xieS5pbyIsImlhdCI6MTY4OTY2OTUxMywic3ViIjoicjRqTnZ4Yy16RkNySHlTdmh0dzNWQT09IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DVVNUT01FUiJdLCJ0YXJnZXQiOiJzZXNzaW9uIiwib2lkIjoiM2MyYmM3Y2MtYjZlNy00ZWU0LWFiYmItNDlhMzhhMDRkOGIzIiwiYWlkIjoiODI5YjMzMTYtMjliZS00ODhmLWIxOTktMDdmNmQ0NWJjMzg0IiwiYmlkIjoiOGEzNjljM2M4N2VjMTcyNjAxODdlZmY3NzgxNDQ2OTUiLCJleHAiOjE2ODk3NTU5MTN9.E8Bq_UYeHnhqj9DnWD_WL__9qGriBhkp2WvaU-2XqnI0_ni7NPnGgg9iMhcQPHsp8hjed8Jv9Tzf78Uq09eviw";
     const conferenceId = $("#conferenceId").val();
 
     VoxeetSDK.initializeToken(clientAccessToken, (isExpired) => {
