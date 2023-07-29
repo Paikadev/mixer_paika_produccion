@@ -108,7 +108,7 @@
         socket.on('set_interaction_id', function (response) {
             var json = JSON.stringify(response);
             const data = JSON.parse(json);
-            console.log("Set interaction " + data.result[0].idInteraction)
+            console.log("Set interaction " + data)
 
              const texto3 = document.createTextNode("id Interaction" + data.result[0].idInteraction);
             columnaPlayers.appendChild(texto);
