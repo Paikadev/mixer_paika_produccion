@@ -116,7 +116,8 @@
             console.log("***")
             console.log(typeof data.result[0].idInteraction);
             console.log("***__")
-            socket.emit('join',data.result[0].idInteraction);
+            //socket.emit('join',data.result[0].idInteraction);
+            socket.emit('join','252');
             
             const texto = document.createTextNode(" Se unio - ");
             columnaPlayers.appendChild(texto);
