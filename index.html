@@ -112,12 +112,12 @@
             console.log("Set interaction " + data)
 
              
-            const texto3 = document.createTextNode("id Interaction" + data.result);
+            const texto3 = document.createTextNode("id Interaction" + data);
             columnaPlayers.appendChild(texto3);
             //id_interaction = data.result[0].idInteraction;
             
             //socket.emit('join',data.result[0].idInteraction);
-            socket.emit('join','252');
+            socket.emit('join',data + '');
             
             const texto4 = document.createTextNode(" Se unio - ");
             columnaPlayers.appendChild(texto4);
