@@ -89,9 +89,18 @@
             const texto2 = document.createTextNode("id conf" + conference_Id);
             columnaPlayers.appendChild(texto);
            
-
-            socket.emit('get_interaction_id', conference_Id);
+// sleep time expects milliseconds
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+  
+  // Usage!
+  sleep(2500).then(() => {
+      // Do something after the sleep!
+      socket.emit('get_interaction_id', conference_Id);
             console.log("Get id interaction with conference id " + conference_Id)
+  });
+            
             
             document.getElementById('greenDiv').style.display = 'none';
             document.getElementById('blueDiv').style.display = 'block';
