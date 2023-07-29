@@ -61,8 +61,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        
 
+        var conference_Id = ""
+        
+        const initializeData= () => {
+           conference_Id = $("#conferenceId").val();
+           console.log("Id conference" + conference_Id);
+        };
+
+        initializeData();
         var apiKey = 'wyOVDRkAyXfNDepFmXyN8u9vzaB5lfJk';
         //var giphyUrl = 'https://api.giphy.com/v1/gifs/random?api_key=' + apiKey;
 
@@ -72,8 +79,7 @@
 
         var lobbyShow = true;
         var type = "";
-        const id_interaction = ""
-        const conference_Id = $("#conferenceId").val();
+        
 
         //const conference_Id = ""
 
