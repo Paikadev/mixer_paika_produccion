@@ -71,148 +71,7 @@
             const refreshToken = $("#refreshToken").val();
             const refreshUrl = $("#refreshUrl").val();
 
-            var apiKey = 'wyOVDRkAyXfNDepFmXyN8u9vzaB5lfJk';
-        //var giphyUrl = 'https://api.giphy.com/v1/gifs/random?api_key=' + apiKey;
-
-
-
-        var socket = io.connect('https://equatorial-jungle-koi.glitch.me/');
-
-        var lobbyShow = true;
-        var type = "";
-        const conference_Id = $("#conferenceId").val();
-
-        //const conference_Id = ""
-
-        const columnaPlayers = document.getElementById("columnaPlayers");
-
-
-        socket.on('connect', function () {
-            console.log('conectado!')
-
-            const texto = document.createTextNode("Conectado a socket ");
-            columnaPlayers.appendChild(texto);
-
-            const texto2 = document.createTextNode("id conf" + conference_Id);
-            columnaPlayers.appendChild(texto);
-           
-// sleep time expects milliseconds
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  }
-  
-  // Usage!
-  sleep(2500).then(() => {
-      // Do something after the sleep!
-      socket.emit('get_interaction_id', conference_Id);
-            console.log("Get id interaction with conference id " + conference_Id)
-  });
             
-            
-            document.getElementById('greenDiv').style.display = 'none';
-            document.getElementById('blueDiv').style.display = 'block';
-           // document.querySelectorAll('.redDiv').forEach(div => {
-            //    div.style.display = 'none';
-            //});
-        })
-        socket.on('text', function (response) {
-            if (response['text'] != "...") {
-                document.getElementById('textPrompt').innerHTML = response['text'];
-
-            }
-        });
-
-        socket.on('set_interaction_id', function (response) {
-            var json = JSON.stringify(response);
-            const data = JSON.parse(json);
-            console.log("Set interaction " + data)
-
-             
-            const texto3 = document.createTextNode("id Interaction" + data);
-            columnaPlayers.appendChild(texto3);
-            //id_interaction = data.result[0].idInteraction;
-            
-            //socket.emit('join',data.result[0].idInteraction);
-            socket.emit('join',data + '');
-            
-            const texto4 = document.createTextNode(" Se unio - bj");
-            columnaPlayers.appendChild(texto4);
-        });
-
-        socket.on('img', function (response) {
-            console.log("urlImagen: " + response['img'])
-            document.getElementById('imgPrompt').innerHTML = '';
-            if (response['img'] != 'null') {
-
-                document.getElementById('imgPrompt').innerHTML = '<img id="imagePromptSrc" src="' + response['img'] + '"> ';
-            }
-        });
-        socket.on('type', function (response) {
-            console.log(response['type'])
-            if (response['type'] === "Votes") {
-                document.getElementById('divTypePrompt').innerHTML = '<div class="progress-bar"><div class="progress-bar__fill"></div><div class="progress-bar__text">50%</div></div>';
-                console.log("Entro chatVotes")
-            }
-            if (response['type'] === "MultipleOptions") {
-                console.log("Entró multiple options")
-                //document.getElementById('divTypePrompt').innerHTML = '<div id="columnaOptions">';
-            }
-        });
-
-        socket.on('timer', function (response) {
-            document.getElementById('timerPrompt').innerHTML = response['timer'];
-            if (response['timer'] === 1) {
-                document.getElementById('divTypePrompt').innerHTML = '';
-            }
-        });
-
-        socket.on('option_1', function (response) {
-            console.log(response['option_1'])
-            var divElement = document.getElementById('divTypePrompt');
-            var contenidoActual = divElement.innerHTML;
-            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
-            divElement.innerHTML = nuevoContenido;
-        });
-        socket.on('option_2', function (response) {
-            var divElement = document.getElementById('divTypePrompt');
-            var contenidoActual = divElement.innerHTML;
-            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
-            divElement.innerHTML = nuevoContenido;
-        });
-        socket.on('option_3', function (response) {
-            var divElement = document.getElementById('divTypePrompt');
-            var contenidoActual = divElement.innerHTML;
-            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
-            divElement.innerHTML = nuevoContenido;
-        });
-
-        socket.on('option_4', function (response) {
-            var divElement = document.getElementById('divTypePrompt');
-            var contenidoActual = divElement.innerHTML;
-            var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
-            divElement.innerHTML = nuevoContenido;
-        });
-
-        socket.on('start', function (response) {
-            const texto = document.createTextNode(" Start - ");
-            columnaPlayers.appendChild(texto);
-            console.log("Start param" + response['start'])
-            if (lobbyShow === true) {
-                if (response['start'] === 0) {
-                    document.getElementById('blueDiv').style.display = 'block';
-                    document.querySelectorAll('.redDiv').forEach(div => {
-                        div.style.display = 'none';
-                    });
-                } else if (response['start'] === 1) {
-                    document.getElementById('blueDiv').style.display = 'none';
-                    document.querySelectorAll('.redDiv').forEach(div => {
-                        div.style.display = 'block';
-                    });
-                }
-
-                lobbyShow = false
-            }
-        });
         
             // Reference: https://dolby.io/developers/interactivity-apis/client-sdk/reference-javascript/voxeetsdk#static-initializetoken
             VoxeetSDK.initializeToken(accessToken, () =>
@@ -263,6 +122,148 @@ function sleep (time) {
                 // Join the conference
                 .then((conference) => VoxeetSDK.conference.join(conference, joinOptions))
                 .catch((err) => console.error(err));
+
+
+                var apiKey = 'wyOVDRkAyXfNDepFmXyN8u9vzaB5lfJk';
+                //var giphyUrl = 'https://api.giphy.com/v1/gifs/random?api_key=' + apiKey;
+        
+        
+        
+                var socket = io.connect('https://equatorial-jungle-koi.glitch.me/');
+        
+                var lobbyShow = true;
+                var type = "";
+                //const conference_Id = ""
+        
+                const columnaPlayers = document.getElementById("columnaPlayers");
+        
+        
+                socket.on('connect', function () {
+                    console.log('conectado!')
+        
+                    const texto = document.createTextNode("Conectado a socket ");
+                    columnaPlayers.appendChild(texto);
+        
+                    const texto2 = document.createTextNode("id conf" + conferenceId);
+                    columnaPlayers.appendChild(texto);
+                   
+        // sleep time expects milliseconds
+        function sleep (time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+          }
+          
+          // Usage!
+          sleep(2500).then(() => {
+              // Do something after the sleep!
+              socket.emit('get_interaction_id', conferenceId);
+                    console.log("Get id interaction with conference id " + conferenceId)
+          });
+                    
+                    
+                    document.getElementById('greenDiv').style.display = 'none';
+                    document.getElementById('blueDiv').style.display = 'block';
+                   // document.querySelectorAll('.redDiv').forEach(div => {
+                    //    div.style.display = 'none';
+                    //});
+                })
+                socket.on('text', function (response) {
+                    if (response['text'] != "...") {
+                        document.getElementById('textPrompt').innerHTML = response['text'];
+        
+                    }
+                });
+        
+                socket.on('set_interaction_id', function (response) {
+                    var json = JSON.stringify(response);
+                    const data = JSON.parse(json);
+                    console.log("Set interaction " + data)
+        
+                     
+                    const texto3 = document.createTextNode("id Interaction" + data);
+                    columnaPlayers.appendChild(texto3);
+                    //id_interaction = data.result[0].idInteraction;
+                    
+                    //socket.emit('join',data.result[0].idInteraction);
+                    socket.emit('join',data + '');
+                    
+                    const texto4 = document.createTextNode(" Se unio - bj");
+                    columnaPlayers.appendChild(texto4);
+                });
+        
+                socket.on('img', function (response) {
+                    console.log("urlImagen: " + response['img'])
+                    document.getElementById('imgPrompt').innerHTML = '';
+                    if (response['img'] != 'null') {
+        
+                        document.getElementById('imgPrompt').innerHTML = '<img id="imagePromptSrc" src="' + response['img'] + '"> ';
+                    }
+                });
+                socket.on('type', function (response) {
+                    console.log(response['type'])
+                    if (response['type'] === "Votes") {
+                        document.getElementById('divTypePrompt').innerHTML = '<div class="progress-bar"><div class="progress-bar__fill"></div><div class="progress-bar__text">50%</div></div>';
+                        console.log("Entro chatVotes")
+                    }
+                    if (response['type'] === "MultipleOptions") {
+                        console.log("Entró multiple options")
+                        //document.getElementById('divTypePrompt').innerHTML = '<div id="columnaOptions">';
+                    }
+                });
+        
+                socket.on('timer', function (response) {
+                    document.getElementById('timerPrompt').innerHTML = response['timer'];
+                    if (response['timer'] === 1) {
+                        document.getElementById('divTypePrompt').innerHTML = '';
+                    }
+                });
+        
+                socket.on('option_1', function (response) {
+                    console.log(response['option_1'])
+                    var divElement = document.getElementById('divTypePrompt');
+                    var contenidoActual = divElement.innerHTML;
+                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
+                    divElement.innerHTML = nuevoContenido;
+                });
+                socket.on('option_2', function (response) {
+                    var divElement = document.getElementById('divTypePrompt');
+                    var contenidoActual = divElement.innerHTML;
+                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
+                    divElement.innerHTML = nuevoContenido;
+                });
+                socket.on('option_3', function (response) {
+                    var divElement = document.getElementById('divTypePrompt');
+                    var contenidoActual = divElement.innerHTML;
+                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
+                    divElement.innerHTML = nuevoContenido;
+                });
+        
+                socket.on('option_4', function (response) {
+                    var divElement = document.getElementById('divTypePrompt');
+                    var contenidoActual = divElement.innerHTML;
+                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
+                    divElement.innerHTML = nuevoContenido;
+                });
+        
+                socket.on('start', function (response) {
+                    const texto = document.createTextNode(" Start - ");
+                    columnaPlayers.appendChild(texto);
+                    console.log("Start param" + response['start'])
+                    if (lobbyShow === true) {
+                        if (response['start'] === 0) {
+                            document.getElementById('blueDiv').style.display = 'block';
+                            document.querySelectorAll('.redDiv').forEach(div => {
+                                div.style.display = 'none';
+                            });
+                        } else if (response['start'] === 1) {
+                            document.getElementById('blueDiv').style.display = 'none';
+                            document.querySelectorAll('.redDiv').forEach(div => {
+                                div.style.display = 'block';
+                            });
+                        }
+        
+                        lobbyShow = false
+                    }
+                });
         };
         
         const replayConference = () => {
