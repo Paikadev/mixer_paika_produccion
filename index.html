@@ -72,9 +72,9 @@
         var lobbyShow = true;
         var type = "";
         const id_interaction = ""
-        const conference_Id = $("#conferenceId").val();
+        //const conference_Id = $("#conferenceId").val();
 
-        //const conference_Id = "7f56e6ef-e1e6-4d4d-a76e-b9153f8c59dd"
+        const conference_Id = "5e43cbeb-72d8-49d4-909b-abd18d2a4691"
 
         const columnaPlayers = document.getElementById("columnaPlayers");
 
@@ -110,7 +110,8 @@
             const data = JSON.parse(json);
             console.log("Set interaction " + data)
 
-             const texto3 = document.createTextNode("id Interaction" + data.result[0].idInteraction);
+             
+            const texto3 = document.createTextNode("id Interaction" + data);
             columnaPlayers.appendChild(texto);
             //id_interaction = data.result[0].idInteraction;
             console.log("***")
