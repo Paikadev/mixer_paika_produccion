@@ -35,7 +35,7 @@
 
 
 
-    
+
     <div id="redDivContainer">
         <div class="redDiv" id="imgPrompt">
         </div>
@@ -61,9 +61,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        
 
-        
+
+
 
         const initializeVoxeetSDK = () => {
             // Load the settings injected by the mixer
@@ -71,8 +71,8 @@
             const refreshToken = $("#refreshToken").val();
             const refreshUrl = $("#refreshUrl").val();
 
-            
-        
+
+
             // Reference: https://dolby.io/developers/interactivity-apis/client-sdk/reference-javascript/voxeetsdk#static-initializetoken
             VoxeetSDK.initializeToken(accessToken, () =>
                 fetch(refreshUrl, {
@@ -87,23 +87,23 @@
                     .then((json) => json.access_token)
             );
         };
-        
+
         const joinConference = () => {
             // Initialize the SDK
             initializeVoxeetSDK();
-        
+
             // Load the settings injected by the mixer
             const catToken = $("#catToken").val();
             const conferenceId = $("#conferenceId").val();
             const thirdPartyId = $("#thirdPartyId").val();
             const layoutType = $("#layoutType").val();
-        
+
             const mixer = {
                 name: "Mixer",
                 externalId: "Mixer_" + layoutType,
                 thirdPartyId: thirdPartyId,
             };
-        
+
             const joinOptions = {
                 conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
                 constraints: {
@@ -115,7 +115,7 @@
                 },
                 userParams: {}
             };
-            
+
             // Open a session for the mixer
             VoxeetSDK.session.open(mixer)
                 .then(() => VoxeetSDK.conference.fetch(conferenceId))
@@ -124,178 +124,174 @@
                 .catch((err) => console.error(err));
 
 
-                var apiKey = 'wyOVDRkAyXfNDepFmXyN8u9vzaB5lfJk';
-                //var giphyUrl = 'https://api.giphy.com/v1/gifs/random?api_key=' + apiKey;
-        
-        
-        
-                var socket = io.connect('https://equatorial-jungle-koi.glitch.me/');
-        
-                var lobbyShow = true;
-                var type = "";
-                //const conference_Id = ""
-        
-                const columnaPlayers = document.getElementById("columnaPlayers");
-        
-        
-                socket.on('connect', function () {
-                    console.log('conectado!')
-        
-                    const texto = document.createTextNode("Conectado a socket ");
-                    columnaPlayers.appendChild(texto);
-        
-                    const texto2 = document.createTextNode("id conf" + conferenceId);
-                    columnaPlayers.appendChild(texto);
-                   
-        // sleep time expects milliseconds
-        function sleep (time) {
-            return new Promise((resolve) => setTimeout(resolve, time));
-          }
-          
-          // Usage!
-          sleep(2500).then(() => {
-              // Do something after the sleep!
-              socket.emit('get_interaction_id', conferenceId);
+            var apiKey = 'wyOVDRkAyXfNDepFmXyN8u9vzaB5lfJk';
+            //var giphyUrl = 'https://api.giphy.com/v1/gifs/random?api_key=' + apiKey;
+
+
+
+            var socket = io.connect('https://equatorial-jungle-koi.glitch.me/');
+
+            var lobbyShow = true;
+            var type = "";
+            //const conference_Id = ""
+
+
+            socket.on('connect', function () {
+                console.log('conectado!')
+
+
+
+                // sleep time expects milliseconds
+                function sleep(time) {
+                    return new Promise((resolve) => setTimeout(resolve, time));
+                }
+
+                // Usage!
+                sleep(2500).then(() => {
+                    // Do something after the sleep!
+                    socket.emit('get_interaction_id', conferenceId);
                     console.log("Get id interaction with conference id " + conferenceId)
-          });
-                    
-                    
-                    document.getElementById('greenDiv').style.display = 'none';
-                    document.getElementById('blueDiv').style.display = 'block';
-                   // document.querySelectorAll('.redDiv').forEach(div => {
-                    //    div.style.display = 'none';
-                    //});
-                })
-                socket.on('text', function (response) {
-                    if (response['text'] != "...") {
-                        document.getElementById('textPrompt').innerHTML = response['text'];
-        
+                });
+
+
+                document.getElementById('greenDiv').style.display = 'none';
+                document.getElementById('blueDiv').style.display = 'block';
+                // document.querySelectorAll('.redDiv').forEach(div => {
+                //    div.style.display = 'none';
+                //});
+            })
+            socket.on('text', function (response) {
+                if (response['text'] != "...") {
+                    document.getElementById('textPrompt').innerHTML = response['text'];
+
+                }
+            });
+
+            socket.on('set_interaction_id', function (response) {
+                var json = JSON.stringify(response);
+                const data = JSON.parse(json);
+                console.log("Set interaction " + data)
+
+
+
+                //socket.emit('join',data.result[0].idInteraction);
+                socket.emit('join', data + '');
+
+            });
+
+            socket.on('img', function (response) {
+                console.log("urlImagen: " + response['img'])
+                document.getElementById('imgPrompt').innerHTML = '';
+                if (response['img'] != 'null') {
+
+                    document.getElementById('imgPrompt').innerHTML = '<img id="imagePromptSrc" src="' + response['img'] + '"> ';
+                }
+            });
+
+            socket.on('players_list_update_mixer', function (response) {
+                console.log("urlImagen: " + response['img'])
+                divParent = document.getElementById('blueDiv');
+                divParent.innerHTML = '<div id="columnaPlayers">'+response['name']+'</div>';
+            });
+
+            socket.on('type', function (response) {
+                console.log(response['type'])
+                if (response['type'] === "Votes") {
+                    document.getElementById('divTypePrompt').innerHTML = '<div class="progress-bar"><div class="progress-bar__fill"></div><div class="progress-bar__text">50%</div></div>';
+                    console.log("Entro chatVotes")
+                }
+                if (response['type'] === "MultipleOptions") {
+                    console.log("Entró multiple options")
+                    //document.getElementById('divTypePrompt').innerHTML = '<div id="columnaOptions">';
+                }
+            });
+
+            socket.on('timer', function (response) {
+                document.getElementById('timerPrompt').innerHTML = response['timer'];
+                if (response['timer'] === 1) {
+                    document.getElementById('divTypePrompt').innerHTML = '';
+                }
+            });
+
+            socket.on('option_1', function (response) {
+                console.log(response['option_1'])
+                var divElement = document.getElementById('divTypePrompt');
+                var contenidoActual = divElement.innerHTML;
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
+                divElement.innerHTML = nuevoContenido;
+            });
+            socket.on('option_2', function (response) {
+                var divElement = document.getElementById('divTypePrompt');
+                var contenidoActual = divElement.innerHTML;
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
+                divElement.innerHTML = nuevoContenido;
+            });
+            socket.on('option_3', function (response) {
+                var divElement = document.getElementById('divTypePrompt');
+                var contenidoActual = divElement.innerHTML;
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
+                divElement.innerHTML = nuevoContenido;
+            });
+
+            socket.on('option_4', function (response) {
+                var divElement = document.getElementById('divTypePrompt');
+                var contenidoActual = divElement.innerHTML;
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
+                divElement.innerHTML = nuevoContenido;
+            });
+
+            socket.on('start', function (response) {
+                const texto = document.createTextNode(" Start - ");
+                columnaPlayers.appendChild(texto);
+                console.log("Start param" + response['start'])
+                if (lobbyShow === true) {
+                    if (response['start'] === 0) {
+                        document.getElementById('blueDiv').style.display = 'block';
+                        document.querySelectorAll('.redDiv').forEach(div => {
+                            div.style.display = 'none';
+                        });
+                    } else if (response['start'] === 1) {
+                        document.getElementById('blueDiv').style.display = 'none';
+                        document.querySelectorAll('.redDiv').forEach(div => {
+                            div.style.display = 'block';
+                        });
                     }
-                });
-        
-                socket.on('set_interaction_id', function (response) {
-                    var json = JSON.stringify(response);
-                    const data = JSON.parse(json);
-                    console.log("Set interaction " + data)
-        
-                     
-                    const texto3 = document.createTextNode("id Interaction" + data);
-                    columnaPlayers.appendChild(texto3);
-                    //id_interaction = data.result[0].idInteraction;
-                    
-                    //socket.emit('join',data.result[0].idInteraction);
-                    socket.emit('join',data + '');
-                    
-                    const texto4 = document.createTextNode(" Se unio - bj");
-                    columnaPlayers.appendChild(texto4);
-                });
-        
-                socket.on('img', function (response) {
-                    console.log("urlImagen: " + response['img'])
-                    document.getElementById('imgPrompt').innerHTML = '';
-                    if (response['img'] != 'null') {
-        
-                        document.getElementById('imgPrompt').innerHTML = '<img id="imagePromptSrc" src="' + response['img'] + '"> ';
-                    }
-                });
-                socket.on('type', function (response) {
-                    console.log(response['type'])
-                    if (response['type'] === "Votes") {
-                        document.getElementById('divTypePrompt').innerHTML = '<div class="progress-bar"><div class="progress-bar__fill"></div><div class="progress-bar__text">50%</div></div>';
-                        console.log("Entro chatVotes")
-                    }
-                    if (response['type'] === "MultipleOptions") {
-                        console.log("Entró multiple options")
-                        //document.getElementById('divTypePrompt').innerHTML = '<div id="columnaOptions">';
-                    }
-                });
-        
-                socket.on('timer', function (response) {
-                    document.getElementById('timerPrompt').innerHTML = response['timer'];
-                    if (response['timer'] === 1) {
-                        document.getElementById('divTypePrompt').innerHTML = '';
-                    }
-                });
-        
-                socket.on('option_1', function (response) {
-                    console.log(response['option_1'])
-                    var divElement = document.getElementById('divTypePrompt');
-                    var contenidoActual = divElement.innerHTML;
-                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
-                    divElement.innerHTML = nuevoContenido;
-                });
-                socket.on('option_2', function (response) {
-                    var divElement = document.getElementById('divTypePrompt');
-                    var contenidoActual = divElement.innerHTML;
-                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
-                    divElement.innerHTML = nuevoContenido;
-                });
-                socket.on('option_3', function (response) {
-                    var divElement = document.getElementById('divTypePrompt');
-                    var contenidoActual = divElement.innerHTML;
-                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
-                    divElement.innerHTML = nuevoContenido;
-                });
-        
-                socket.on('option_4', function (response) {
-                    var divElement = document.getElementById('divTypePrompt');
-                    var contenidoActual = divElement.innerHTML;
-                    var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
-                    divElement.innerHTML = nuevoContenido;
-                });
-        
-                socket.on('start', function (response) {
-                    const texto = document.createTextNode(" Start - ");
-                    columnaPlayers.appendChild(texto);
-                    console.log("Start param" + response['start'])
-                    if (lobbyShow === true) {
-                        if (response['start'] === 0) {
-                            document.getElementById('blueDiv').style.display = 'block';
-                            document.querySelectorAll('.redDiv').forEach(div => {
-                                div.style.display = 'none';
-                            });
-                        } else if (response['start'] === 1) {
-                            document.getElementById('blueDiv').style.display = 'none';
-                            document.querySelectorAll('.redDiv').forEach(div => {
-                                div.style.display = 'block';
-                            });
-                        }
-        
-                        lobbyShow = false
-                    }
-                });
+
+                    lobbyShow = false
+                }
+            });
         };
-        
+
         const replayConference = () => {
             // Initialize the SDK
             initializeVoxeetSDK();
-        
+
             // Load the settings injected by the mixer
             const catToken = $("#catToken").val();
             const conferenceId = $("#conferenceId").val();
             const thirdPartyId = $("#thirdPartyId").val();
             const layoutType = $("#layoutType").val();
-        
+
             const mixer = {
                 name: "Mixer",
                 externalId: "Mixer_" + layoutType,
                 thirdPartyId: thirdPartyId
             };
-        
+
             const replayOptions = {
                 conferenceAccessToken: (catToken && catToken.length > 0 ? catToken : null),
                 offset: 0
             };
-            
+
             // Open a session for the mixer
             VoxeetSDK.session.open(mixer)
                 .then(() => VoxeetSDK.conference.fetch(conferenceId))
                 // Replay the conference from the beginning
-                .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true}))
+                .then((conference) => VoxeetSDK.conference.replay(conference, replayOptions, { enabled: true }))
                 .catch((err) => console.error(err));
         };
-        
-        
+
+
         // Add the video stream to the web page
         const addVideoNode = (participant, stream) => {
             let participantNode = $("#participant-" + participant.id);
@@ -315,33 +311,33 @@
             // Attach the stream to the video element
             navigator.attachMediaStream(participantNode.find("video").get(0), stream);
         };
-        
+
         // Remove the video stream from the web page
         const removeVideoNode = (participant) => {
             $("#participant-" + participant.id).remove();
         };
-        
-        
+
+
         // Add a screen share stream to the web page
         const addScreenShareNode = (stream) => {
             let screenshareNode = $("<div />")
                 .attr("id", "screenshare")
                 .appendTo("body");
-        
+
             let container = $("<div />")
                 .addClass("container")
                 .appendTo(screenshareNode);
-        
+
             let videoNode = $("<video autoplay playsInline muted />")
                 .appendTo(container);
-        
+
             // Attach the stream to the video element
             navigator.attachMediaStream(videoNode.get(0), stream);
         };
-        
-        
-        
-        
+
+
+
+
         // Add a Video player to the web page
         const addVideoPlayer = (videoUrl) => {
             $("<video autoplay playsinline />")
@@ -349,28 +345,28 @@
                 .attr("src", videoUrl)
                 .appendTo("body");
         };
-        
+
         // Move the cursor in the video
         const seekVideoPlayer = (timestamp) => {
             $("#video-url-player")[0].currentTime = timestamp;
         };
-        
+
         // Pause the video
         const pauseVideoPlayer = () => {
             $("#video-url-player")[0].pause();
         };
-        
+
         // Play the video
         const playVideoPlayer = () => {
             $("#video-url-player")[0].play();
         };
-        
+
         // Remove the Video player from the web page
         const removeVideoPlayer = () => {
             $("#video-url-player").remove();
         };
-        
-        
+
+
         /*
          * Let the mixer know when the conference has ended.
          */
@@ -378,36 +374,31 @@
             $("#conferenceStartedVoxeet").remove();
             $("body").append('<div id="conferenceEndedVoxeet"></div>');
         };
-        
+
         VoxeetSDK.conference.on("left", onConferenceEnded);
         VoxeetSDK.conference.on("ended", onConferenceEnded);
-        
+
         $(document).ready(() => {
             $("#joinConference").click(joinConference);
             $("#replayConference").click(replayConference);
-            
+
             const layoutType = $("layoutType").val();
             if (layoutType === "stream" || layoutType === "hls") {
                 // Display the live message for the live streams
                 $("#live").removeClass("hide");
             }
-        
+
             // Remove this line, this is just a test
             $("#live").removeClass("hide");
-        
+
             // Inform the mixer that the application is ready to start
             $("<div />").attr("id", "conferenceStartedVoxeet").appendTo("body");
 
-       
+
         });
-       
+
         initializeVoxeetSDK();
     </script>
 </body>
 
 </html>
-
-
-
-
-
