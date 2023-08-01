@@ -147,7 +147,7 @@
                 }
 
                 // Usage!
-                sleep(2000).then(() => {
+                sleep(2500).then(() => {
                     // Do something after the sleep!
                     socket.emit('get_interaction_id', conferenceId);
                     console.log("Get id interaction with conference id " + conferenceId)
@@ -194,7 +194,7 @@
             socket.on('players_list_update_mixer', function (response) {
                 console.log("urlImagen: " + response['img'])
                 divParent = document.getElementById('blueDiv');
-                divParent.innerHTML = '<div id="columnaPlayers">'+response['name']+'</div>';
+                divParent.innerHTML = divParent + '<div id="columnaPlayers">'+response['name']+'</div>';
             });
 
             socket.on('type', function (response) {
