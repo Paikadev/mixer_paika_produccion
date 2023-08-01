@@ -265,12 +265,11 @@
             });
 
             socket.on('finish', function (response) {
-                if (response['finish']===1) {
                     document.getElementById('redDiv').style.display = 'block';
                     document.querySelectorAll('.greenDiv').forEach(div => {
                         div.style.display = 'none';
                     });
-                }
+                
             });
         };
 
