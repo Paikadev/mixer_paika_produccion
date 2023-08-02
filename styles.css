@@ -85,11 +85,10 @@ body {
 #columnaOptions {
   display: flex;
   flex-direction: column;
-  margin: 25px;
+  margin: 15px;
   background-color: #4A3B8B;
   border-radius: 5px;
   height: 80px;
-  width: 470px;
   text-align: center;
   justify-content: center;
   align-items: center;
