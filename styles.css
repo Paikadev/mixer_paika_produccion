@@ -85,10 +85,10 @@ body {
 #columnaOptions {
   display: flex;
   flex-direction: column;
-  margin: 15px;
+  margin: 9px;
   background-color: #4A3B8B;
   border-radius: 5px;
-  height: 80px;
+  height: 70px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -115,7 +115,7 @@ body {
 
 
 #imagePromptSrc{
-  width: 480px;
+  width: 495px;
   text-align: center;
   justify-content: center;
   align-items: center;
