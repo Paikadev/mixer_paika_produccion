@@ -52,6 +52,7 @@ body {
   top: 20px; /* Mantenemos la posición superior */
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
+  font-size: 42px;
 }
 
 #timerPrompt {
@@ -64,8 +65,8 @@ body {
   top: 20px; /* Mantenemos la posición superior */
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
-  width: 60px;
-  font-size: 40px;
+  width: 70px;
+  font-size: 53px;
 }
 #divTypePrompt {
   text-align: justify;
