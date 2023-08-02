@@ -52,7 +52,7 @@ body {
   top: 20px; /* Mantenemos la posición superior */
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
-  font-size: 42px;
+  font-size: 55px;
 }
 
 #timerPrompt {
@@ -66,7 +66,7 @@ body {
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
   width: 70px;
-  font-size: 53px;
+  font-size: 63px;
 }
 #divTypePrompt {
   text-align: justify;
@@ -85,14 +85,14 @@ body {
 #columnaOptions {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 5px;
   background-color: #4A3B8B;
   border-radius: 5px;
-  height: 50px;
+  height: 70px;
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 40px;
 }
 
 #columnaPlayers{
@@ -110,12 +110,12 @@ body {
   position: relative;
   top: 30%;
   left: 35%;
-  font-size: 30px;
+  font-size: 45px;
 }
 
 
 #imagePromptSrc{
-  width: 310px;
+  width: 430px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -137,8 +137,8 @@ video {
 }
 
 .progress-bar {
-width: 200px;
-height: 20px;
+width: 300px;
+height: 60px;
 background-color: lightgray;
 border-radius: 10px;
 position: relative;
@@ -147,7 +147,7 @@ position: relative;
 .progress-bar__fill {
 height: 100%;
 background-color: #4A3B8B;
-border-radius: 10px;
+border-radius: 2px;
 width: 50%;
 }
 
