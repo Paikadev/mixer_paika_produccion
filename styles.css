@@ -10,8 +10,8 @@ body {
 }
 
 #blueDiv {
-  width: 1920px;
-  height: 1080px;
+  width: 1900px;
+  height: 1070px;
   background-color: black;
   position: absolute;
   top: 0;
@@ -20,8 +20,8 @@ body {
 }
 
 #greenDiv {
-  width: 1920px;
-  height: 1080px;
+  width: 1900px;
+  height: 1070px;
   background-color: blue;
   display: none;
 }
@@ -33,7 +33,7 @@ body {
 
 .redDiv {
   width: 640px;
-  height: 1080px;
+  height: 1070px;
   margin-right: 10px;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,8 @@ body {
   top: 20px; /* Mantenemos la posición superior */
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
-  width: 30px;
+  width: 60px;
+  font-size: 40px;
 }
 #divTypePrompt {
   text-align: justify;
@@ -90,6 +91,7 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  font-size: 25px;
 }
 
 #columnaPlayers{
@@ -107,6 +109,7 @@ body {
   position: relative;
   top: 30%;
   left: 35%;
+  font-size: 30px;
 }
 
 
