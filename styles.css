@@ -1,3 +1,7 @@
+html { 
+  font-family: century-gothic, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -66,7 +70,7 @@ body {
   left: 50%; /* Centramos horizontalmente */
   transform: translateX(-50%);
   width: 70px;
-  font-size: 63px;
+  font-size: 55px;
 }
 #divTypePrompt {
   text-align: justify;
