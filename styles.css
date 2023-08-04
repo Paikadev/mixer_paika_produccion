@@ -170,6 +170,7 @@ color: white;
   height: 500px;
   border-radius: 50%; 
   overflow: hidden; 
+  object-fit: cover;
 }
 
 #winnerName {
