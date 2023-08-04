@@ -143,8 +143,8 @@
             var lobbyShow = true;
             var type = "";
             //const conference_Id = ""
-            let winnerName = "";
-            let winnerImg = "";
+            var winnerName;
+            var winnerImg;
 
 
             socket.on('connect', function () {
@@ -182,7 +182,7 @@
                 var json = JSON.stringify(response);
                 const data = JSON.parse(json);
 
-                winnerName = json;
+                winnerName = response;
             });
 
             socket.on('set_interaction_id', function (response) {
