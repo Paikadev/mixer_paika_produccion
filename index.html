@@ -182,10 +182,7 @@
                 var json = JSON.stringify(response);
                 const data = JSON.parse(json);
 
-                winnerName = data;
-                //winnerImg = data[0].img;
-
-                alert("Hello! " + response['name'] +"" + json +"  " + winnerName);
+                winnerName = json;
             });
 
             socket.on('set_interaction_id', function (response) {
