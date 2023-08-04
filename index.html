@@ -144,9 +144,6 @@
             var lobbyShow = true;
             var type = "";
             //const conference_Id = ""
-            var winnerName;
-            var winnerImg;
-
 
             socket.on('connect', function () {
                 console.log('conectado!')
@@ -180,13 +177,14 @@
             });
             socket.on('set_winner', function (response) {
                
-                var json = JSON.stringify(response);
-
-                winnerName = response;
+                const myDiv = document.getElementById("winnerImg");
+                const imgElement = document.createElement("img");
+                imgElement.src = response['img'];
+                myDiv.appendChild(imgElement);
 
                 const greenDiv = document.getElementById("winnerName");
                 if (greenDiv) {
-                    greenDiv.textContent = response['name'] + "Nameeeeee****";
+                    greenDiv.textContent = response['name'];
                 }
             });
 
@@ -301,10 +299,7 @@
                 }
 
 
-                const myDiv = document.getElementById("winnerImg");
-                const imgElement = document.createElement("img");
-                imgElement.src = winnerImg;
-                myDiv.appendChild(imgElement);
+                
 
 
 
