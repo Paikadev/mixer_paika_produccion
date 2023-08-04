@@ -172,6 +172,7 @@
             socket.on('set_winner', function (response) {
                 winnerName = response;
                 winnerImg = response['img']
+                alert("Hello! I am an alert box!! "+ response);
             });
 
             socket.on('set_interaction_id', function (response) {
@@ -292,7 +293,6 @@
                     ],
                 });
 
-                jsConfetti.addConfetti();
 
             });
         };
