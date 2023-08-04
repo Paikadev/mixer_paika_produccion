@@ -284,13 +284,15 @@
                     greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
                 }
 
-                const jsConfetti = new JSConfetti()
+                const jsConfetti = new JSConfetti();
 
                 jsConfetti.addConfetti({
                     confettiColors: [
                         '#4A3B8B', '#634B90',
                     ],
-                })
+                });
+
+                jsConfetti.addConfetti();
 
             });
         };
