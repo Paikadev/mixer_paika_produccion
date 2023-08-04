@@ -32,7 +32,6 @@ body {
 
 #redDivContainer {
   display: flex;
-  flex-direction: row;
 }
 
 .redDiv {
@@ -40,7 +39,7 @@ body {
   height: 1070px;
   margin-right: 10px;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   color: white;
   font-size: 24px;
   display: flex;
