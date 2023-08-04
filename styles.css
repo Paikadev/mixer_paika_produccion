@@ -175,7 +175,8 @@ color: white;
   margin: 30px;
 }
 #winnerImg img{
-  object-fit: cover;
+  width: 500px;
+  height: 500px;
 }
 
 #winnerName {
