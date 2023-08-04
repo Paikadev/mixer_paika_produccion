@@ -33,6 +33,7 @@ body {
 #redDivContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .redDiv {
