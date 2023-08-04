@@ -136,7 +136,7 @@
             var type = "";
             //const conference_Id = ""
             var winnerName = ""
-
+            var winnerImg = ""
 
 
             socket.on('connect', function () {
@@ -169,9 +169,6 @@
 
                 }
             });
-
-            let winnerName = "ssss";
-
             socket.on('set_winner', function (response) {
                 winnerName = response;
                 winnerImg = response['img']
@@ -284,15 +281,15 @@
 
                 const greenDiv = document.getElementById("greenDiv");
                 if (greenDiv) {
-                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Winner";
+                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName;
                 }
 
-                jsConfetti.addConfetti({
-                    confettiColors: [
-                        '#4A3B8B', '#634B90',
-                    ],
-                })
+                const jsConfetti = new JSConfetti()
 
+                jsConfetti.addConfetti({
+                    confettiRadius: 2,
+                    confettiNumber: 500,
+                  })
 
             });
         };
