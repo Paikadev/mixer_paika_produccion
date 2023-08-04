@@ -42,7 +42,7 @@ body {
   font-size: 24px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #textPrompt {
@@ -136,7 +136,6 @@ body {
 
 video {
   width: 40%;
-  display: flex;
   height: auto;
 }
 
