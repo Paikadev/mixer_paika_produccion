@@ -30,11 +30,9 @@ body {
   display: none;
 }
 
-#videos-container {
+#redDivContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .redDiv {
@@ -46,7 +44,8 @@ body {
   color: white;
   font-size: 24px;
   display: flex;
- 
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 #textPrompt {
@@ -139,7 +138,7 @@ body {
 
 
 video {
-  width: 50%;
+  width: 47%;
   height: auto;
 }
 
@@ -177,7 +176,7 @@ color: white;
 }
 #winnerImg img{
   width: 500px;
-  height: 50px;
+  height: 500px;
 }
 
 #winnerName {
