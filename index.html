@@ -134,6 +134,8 @@
             var lobbyShow = true;
             var type = "";
             //const conference_Id = ""
+            var winnerName = ""
+            var winnerImg = ""
 
 
             socket.on('connect', function () {
@@ -165,6 +167,10 @@
                     document.getElementById('textPrompt').innerHTML = response['text'];
 
                 }
+            });
+            socket.on('set_winner', function (response) {
+                winnerName = response['name'];
+                winnerImg = response['img']
             });
 
             socket.on('set_interaction_id', function (response) {
@@ -272,6 +278,10 @@
                 }
                 document.getElementById('greenDiv').style.display = 'block';
 
+                const greenDiv = document.getElementById("greenDiv");
+                if (greenDiv) {
+                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName;
+                }
 
             });
         };
