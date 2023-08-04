@@ -181,13 +181,12 @@
             socket.on('set_winner', function (response) {
                
                 var json = JSON.stringify(response);
-                const data = JSON.parse(json);
 
                 winnerName = response;
 
                 const greenDiv = document.getElementById("winnerName");
                 if (greenDiv) {
-                    greenDiv.textContent = data + "Nameeeeee****";
+                    greenDiv.textContent = json + "Nameeeeee****";
                 }
             });
 
