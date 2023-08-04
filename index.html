@@ -266,14 +266,14 @@
                 op2 =response['option_2']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="op2" id="columnaOptions">' + response['option_2'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_3', function (response) {
                 op3 = response['option_3']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="op3" id="columnaOptions">' + response['option_3'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
 
@@ -281,7 +281,7 @@
                 op4 = response['option_4']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="op4" id="columnaOptions">' + response['option_4'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
 
