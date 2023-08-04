@@ -193,6 +193,12 @@
                 if (greenDiv) {
                     greenDiv.textContent = response['name'];
                 }
+
+                jsConfetti.addConfetti({
+                    confettiColors: [
+                      '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+                    ],
+                  });
             });
 
             socket.on('set_interaction_id', function (response) {
@@ -329,11 +335,7 @@
 
                 document.getElementById('greenDiv').style.display = 'block';
 
-                jsConfetti.addConfetti({
-                    confettiColors: [
-                      '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
-                    ],
-                  })
+                
 
 
 

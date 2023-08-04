@@ -40,12 +40,12 @@ body {
   height: 1070px;
   margin-right: 10px;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   color: white;
   font-size: 24px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 #textPrompt {
