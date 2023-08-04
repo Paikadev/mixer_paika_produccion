@@ -291,7 +291,7 @@
 
 
 
-            socket.on('start', function (response) {
+            socket.on('set_start', function (response) {
                 console.log("Start param" + response['start'])
                 if (lobbyShow === true) {
                     if (response['start'] === 0) {
