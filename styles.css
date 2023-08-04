@@ -30,7 +30,7 @@ body {
   display: none;
 }
 
-#redDivContainer {
+.videos-container {
   display: flex;
   flex-direction: row;
 }
