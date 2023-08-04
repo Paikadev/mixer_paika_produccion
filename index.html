@@ -70,6 +70,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script>
 
 
@@ -225,7 +226,7 @@
                 var contenidoActual = divElement.innerHTML;
                 var nuevoContenido = contenidoActual + '<div id="columnaPlayers">' + response['name'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
-                
+
             });
 
             socket.on('type', function (response) {
@@ -322,14 +323,11 @@
                 }
                 document.getElementById('greenDiv').style.display = 'block';
 
-                const greenDiv = document.getElementById("winnerName");
-                if (greenDiv) {
-                    //greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
-                }
-
-
-                
-
+                jsConfetti.addConfetti({
+                    confettiColors: [
+                      '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+                    ],
+                  })
 
 
 
