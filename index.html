@@ -135,7 +135,7 @@
             var lobbyShow = true;
             var type = "";
             //const conference_Id = ""
-            var winnerName = ""
+            let winnerName = ""
             var winnerImg = ""
 
 
@@ -281,14 +281,14 @@
 
                 const greenDiv = document.getElementById("greenDiv");
                 if (greenDiv) {
-                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName;
+                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
                 }
 
                 const jsConfetti = new JSConfetti()
 
                 jsConfetti.addConfetti({
-                    confettiRadius: 2,
-                    confettiNumber: 500,
+                    confettiRadius: 6,
+                    confettiNumber: 100,
                     confettiColors: [
                         '#4A3B8B', '#634B90',
                     ],
