@@ -70,7 +70,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script>
 
 
@@ -193,16 +192,6 @@
                 if (greenDiv) {
                     greenDiv.textContent = response['name'];
                 }
-
-                const jsConfetti = new JSConfetti();
-
-
-                jsConfetti.addConfetti({
-                    confettiRadius: 8,
-                    confettiColors: [
-                      '#4A3B8B', '#634B90',
-                    ],
-                  });
             });
 
             socket.on('set_interaction_id', function (response) {
@@ -231,17 +220,8 @@
 
             socket.on('players_list_update_mixer', function (response) {
                 console.log("urlImagen: " + response['img'])
-
-                const redDivContainer = document.getElementById("blueDiv");
-                if (redDivContainer) {
-                    redDivContainer.remove();
-                }
-               
-                var divElement = document.getElementById('blueDiv');
-                var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="columnaPlayers">' + response['name'] + '</div>';
-                divElement.innerHTML = nuevoContenido;
-
+                divParent = document.getElementById('blueDiv');
+                divParent.innerHTML = divParent + '<div id="columnaPlayers">' + response['name'] + '</div>';
             });
 
             socket.on('type', function (response) {
@@ -336,10 +316,16 @@
                 if (redDivContainer) {
                     redDivContainer.remove();
                 }
-
                 document.getElementById('greenDiv').style.display = 'block';
 
+                const greenDiv = document.getElementById("winnerName");
+                if (greenDiv) {
+                    //greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
+                }
+
+
                 
+
 
 
 
