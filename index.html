@@ -221,6 +221,11 @@
 
             socket.on('players_list_update_mixer', function (response) {
                 console.log("urlImagen: " + response['img'])
+
+                const redDivContainer = document.getElementById("blueDiv");
+                if (redDivContainer) {
+                    redDivContainer.remove();
+                }
                
                 var divElement = document.getElementById('blueDiv');
                 var contenidoActual = divElement.innerHTML;
@@ -321,6 +326,7 @@
                 if (redDivContainer) {
                     redDivContainer.remove();
                 }
+
                 document.getElementById('greenDiv').style.display = 'block';
 
                 jsConfetti.addConfetti({
