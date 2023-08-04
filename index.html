@@ -183,6 +183,11 @@
                 const data = JSON.parse(json);
 
                 winnerName = response;
+
+                const greenDiv = document.getElementById("winnerName");
+                if (greenDiv) {
+                    greenDiv.textContent = response+ "Nameeeeee****";
+                }
             });
 
             socket.on('set_interaction_id', function (response) {
@@ -292,7 +297,7 @@
 
                 const greenDiv = document.getElementById("winnerName");
                 if (greenDiv) {
-                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
+                    //greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
                 }
 
 
