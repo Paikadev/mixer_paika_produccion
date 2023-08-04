@@ -171,9 +171,15 @@ color: white;
   border-radius: 50%; 
   overflow: hidden; 
   object-fit: cover;
+  margin: 30px;
 }
 
 #winnerName {
   font-size: 60px;
+  color: white;
+}
+
+#winnerText {
+  font-size: 80px;
   color: white;
 }
