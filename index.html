@@ -136,7 +136,7 @@
             var type = "";
             //const conference_Id = ""
             var winnerName = ""
-            
+
 
 
             socket.on('connect', function () {
@@ -284,14 +284,14 @@
 
                 const greenDiv = document.getElementById("greenDiv");
                 if (greenDiv) {
-                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName;
+                    greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Winner";
                 }
 
                 jsConfetti.addConfetti({
                     confettiColors: [
-                      '#4A3B8B', '#634B90', 
+                        '#4A3B8B', '#634B90',
                     ],
-                  })
+                })
 
 
             });
