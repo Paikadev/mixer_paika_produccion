@@ -39,11 +39,13 @@ body {
   width: 640px;
   height: 1070px;
   margin-right: 10px;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   color: white;
   font-size: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 #textPrompt {
@@ -136,7 +138,7 @@ body {
 
 
 video {
-  width: 100%;
+  width: 47%;
   height: auto;
 }
 
