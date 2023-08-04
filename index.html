@@ -180,6 +180,8 @@
             socket.on('set_winner', function (response) {
                 winnerName = response['name'];
                 winnerImg = response['img'];
+
+                alert("Hello! " + response['name'] + "  " + winnerName);
             });
 
             socket.on('set_interaction_id', function (response) {
