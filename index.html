@@ -136,7 +136,7 @@
             var type = "";
             //const conference_Id = ""
             var winnerName = ""
-            var winnerImg = ""
+            
 
 
             socket.on('connect', function () {
@@ -169,6 +169,9 @@
 
                 }
             });
+
+            let winnerName = "ssss";
+
             socket.on('set_winner', function (response) {
                 winnerName = response;
                 winnerImg = response['img']
