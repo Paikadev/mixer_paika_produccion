@@ -266,10 +266,27 @@
 
             socket.on('finish', function (response) {
                     document.getElementById('greenDiv').style.display = 'block';
-                    document.querySelectorAll('.redDivContainer').forEach(div => {
+                    
+                    document.querySelectorAll('.videos-container').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                    document.querySelectorAll('.divTypePrompt').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                    document.querySelectorAll('.timerPrompt').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                    document.querySelectorAll('.textPrompt').forEach(div => {
                         div.style.display = 'none';
                     });
                 
+                    document.querySelectorAll('.divInfo').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                    document.querySelectorAll('.redDivContainer').forEach(div => {
+                        div.style.display = 'none';
+                    });
+                    document.getElementById('greenDiv').style.display = 'block';
             });
         };
 
