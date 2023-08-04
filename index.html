@@ -170,7 +170,7 @@
                 }
             });
             socket.on('set_winner', function (response) {
-                winnerName = response['name'];
+                winnerName = response;
                 winnerImg = response['img']
             });
 
@@ -284,7 +284,13 @@
                     greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName;
                 }
 
-                const jsConfetti = new JSConfetti()
+                jsConfetti.addConfetti({
+                    confettiRadius: 1,
+                    confettiNumber: 500,
+                    confettiColors: [
+                      '#4A3B8B', '#634B90', 
+                    ],
+                  })
 
                 jsConfetti.addConfetti()
 
