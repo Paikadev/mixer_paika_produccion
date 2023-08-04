@@ -170,8 +170,10 @@ color: white;
   height: 500px;
   border-radius: 50%; 
   overflow: hidden; 
-  object-fit: fill;
   margin: 30px;
+}
+#winnerImg img{
+  object-fit: cover;
 }
 
 #winnerName {

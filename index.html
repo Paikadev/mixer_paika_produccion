@@ -250,31 +250,31 @@
                 if (response['timer'] === 3) {
                     
                     if(op1 === opCorrect){
-                        document.querySelectorAll('#op1').forEach(div => {
+                        document.querySelectorAll('.op1').forEach(div => {
                             div.style.backgroundColor = "green";
                         });
                     } else {
-                        document.querySelectorAll('#op1').forEach(div => {
+                        document.querySelectorAll('.op1').forEach(div => {
                             div.style.backgroundColor = "red";
                         });
                     }
 
                     if(op2 === opCorrect){
-                        document.querySelectorAll('#op2').forEach(div => {
+                        document.querySelectorAll('.op2').forEach(div => {
                             div.style.backgroundColor = "green";
                         });
                     } else {
-                        document.querySelectorAll('#op2').forEach(div => {
+                        document.querySelectorAll('.op2').forEach(div => {
                             div.style.backgroundColor = "red";
                         });
                     }
 
                     if(op3 === opCorrect){
-                        document.querySelectorAll('#op3').forEach(div => {
+                        document.querySelectorAll('.op3').forEach(div => {
                             div.style.backgroundColor = "green";
                         });
                     } else {
-                        document.querySelectorAll('#op3').forEach(div => {
+                        document.querySelectorAll('.op3').forEach(div => {
                             div.style.backgroundColor = "red";
                         });
                     }
@@ -297,21 +297,21 @@
                 op1 = response['option_1'];
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div class="op1" id="columnaOptions">' + response['option_1'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op1" id="columnaOptions">' + response['option_1'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_2', function (response) {
                 op2 =response['option_2']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div class="op2" id="columnaOptions">' + response['option_2'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op2" id="columnaOptions">' + response['option_2'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_3', function (response) {
                 op3 = response['option_3']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div class="op3" id="columnaOptions">' + response['option_3'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op3" id="columnaOptions">' + response['option_3'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
 
@@ -319,8 +319,12 @@
                 op4 = response['option_4']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div class="op4" id="columnaOptions">' + response['option_4'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op4" id="columnaOptions">' + response['option_4'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
+            });
+
+            socket.on('option_correct', function (response) {
+                opCorrect = response['option_correct'];
             });
 
 
