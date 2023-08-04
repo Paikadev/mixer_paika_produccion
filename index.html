@@ -178,10 +178,14 @@
                 }
             });
             socket.on('set_winner', function (response) {
-                winnerName = response['name'];
-                winnerImg = response['img'];
+               
+                var json = JSON.stringify(response);
+                const data = JSON.parse(json);
 
-                alert("Hello! " + response['name'] + "  " + winnerName);
+                winnerName = data;
+                //winnerImg = data[0].img;
+
+                //alert("Hello! " + response['name'] + "  " + winnerName);
             });
 
             socket.on('set_interaction_id', function (response) {
