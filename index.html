@@ -162,7 +162,7 @@
                 }
 
                 // Usage!
-                sleep(2500).then(() => {
+                sleep(200).then(() => {
                     // Do something after the sleep!
                     socket.emit('get_interaction_id', conferenceId);
                     console.log("Get id interaction with conference id " + conferenceId)
@@ -199,10 +199,10 @@
                 const data = JSON.parse(json);
                 console.log("Set interaction " + data)
 
-
+                socket.emit('join', data + '');
 
                 //socket.emit('join',data.result[0].idInteraction);
-                socket.emit('join', data + '');
+                socket.to(data).emit('mixer_recording', {recording: 1});
 
             });
 
