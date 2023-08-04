@@ -170,7 +170,7 @@
                 }
             });
             socket.on('set_winner', function (response) {
-                winnerName = response;
+                winnerName = response['name'];
                 winnerImg = response['img'];
             });
 
