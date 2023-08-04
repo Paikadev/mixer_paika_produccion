@@ -57,14 +57,16 @@
 
     </div>
     <div id="greenDiv">
-        <center><div id="winnerInfo">
-            <div id="winnerSpacer"></div>
-            <div id="winnerImg"></div>
-            <div id="winnerName"></div>
-        </div></center>
+        <center>
+            <div id="winnerInfo">
+                <div id="winnerSpacer"></div>
+                <div id="winnerImg"></div>
+                <div id="winnerName"></div>
+            </div>
+        </center>
     </div>
 
-   
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
@@ -141,8 +143,8 @@
             var lobbyShow = true;
             var type = "";
             //const conference_Id = ""
-            let winnerName = ""
-            var winnerImg = ""
+            let winnerName = "";
+            let winnerImg = "";
 
 
             socket.on('connect', function () {
@@ -289,6 +291,12 @@
                 if (greenDiv) {
                     greenDiv.textContent = "Este es el texto añadido mediante JavaScript " + winnerName + "Nameeeeee****";
                 }
+
+
+                const myDiv = document.getElementById("winnerImg");
+                const imgElement = document.createElement("img");
+                imgElement.src = winnerImg;
+                myDiv.appendChild(imgElement);
 
                 
 

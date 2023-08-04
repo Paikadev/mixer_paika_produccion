@@ -162,3 +162,12 @@ left: 50%;
 transform: translate(-50%, -50%);
 color: white;
 }
+
+
+
+#winnerImg {
+  width: 500px; /* Define el ancho de la imagen */
+  height: 500px; /* Define la altura de la imagen */
+  border-radius: 50%; /* Aplica el radio de borde circular para hacer que la imagen sea circular */
+  overflow: hidden; /* Oculta cualquier contenido que se salga del círculo */
+}
