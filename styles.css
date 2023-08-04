@@ -35,10 +35,6 @@ body {
   flex-direction: row;
 }
 
-.videos-container {
-  flex-wrap: wrap;
-}
-
 .redDiv {
   width: 640px;
   height: 1070px;
@@ -142,7 +138,7 @@ body {
 
 
 video {
-  width: 280px;
+  width: 47%;
   height: auto;
 }
 
