@@ -36,11 +36,7 @@ body {
 }
 
 .videos-container {
-  flex-direction: row;
-  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .redDiv {
@@ -146,7 +142,7 @@ body {
 
 
 video {
-  width: 300px;
+  width: 280px;
   height: auto;
 }
 
