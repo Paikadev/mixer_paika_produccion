@@ -30,14 +30,17 @@ body {
   display: none;
 }
 
-
+#redDivContainer {
+  display: flex;
+  flex-direction: row;
+}
 
 .redDiv {
   width: 640px;
   height: 1070px;
   margin-right: 10px;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   color: white;
   font-size: 24px;
   display: flex;
@@ -135,10 +138,9 @@ body {
 
 
 video {
-  width: 40%;
+  width: 47%;
   height: auto;
 }
-
 
 .progress-bar {
 width: 300px;
