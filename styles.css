@@ -42,10 +42,11 @@ body {
   align-items: center;
   flex-direction: row;
   color: white;
+  background-color: brown;
   font-size: 24px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #textPrompt {
