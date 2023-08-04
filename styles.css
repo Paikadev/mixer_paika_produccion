@@ -30,9 +30,7 @@ body {
   display: none;
 }
 
-#redDivContainer {
-  display: flex;
-}
+
 
 .redDiv {
   width: 640px;
@@ -137,7 +135,8 @@ body {
 
 
 video {
-  width: 47%;
+  width: auto;
+  display: flex;
   height: auto;
 }
 
