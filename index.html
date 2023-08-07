@@ -259,7 +259,7 @@
                 op1 = response['option_1'];
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="op1" id="columnaOptions">' + response['option_1'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_2', function (response) {
