@@ -96,6 +96,7 @@ const addVideoNode = (participant, stream) => {
         const hijo = document.createElement("div");
         hijo.style.width = "320px";
         hijo.style.height = "525px";
+        hijo.style.background = "red"
         hijo.id = "videos-container" + participant.id;
         hijo.classList.add("video-container");
 
