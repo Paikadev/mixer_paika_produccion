@@ -89,8 +89,17 @@ const replayConference = () => {
 // Add the video stream to the web page
 const addVideoNode = (participant, stream) => {
     let participantNode = $("#participant-" + participant.id);
+    const divPadre = document.getElementById("videos-container")
 
     if (!participantNode.length) {
+
+        const hijo = document.createElement("div");
+        hijo.style.width = "320px";
+        hijo.style.height = "525px";
+        hijo.id = "videos-container" + participant.id;
+        hijo.classList.add("video-container");
+
+
         participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
             .addClass("container")
@@ -98,6 +107,8 @@ const addVideoNode = (participant, stream) => {
 
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
+
+            divPadre.appendChild(hijo);
 
        
     }
