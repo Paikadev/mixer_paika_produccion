@@ -103,7 +103,7 @@ const addVideoNode = (participant, stream) => {
         participantNode = $("<div />")
             .attr("id", "participant-" + participant.id)
             .addClass("container")
-            .appendTo("#videos-container");
+            .appendTo("#videos-container" + participant.id);
 
         $("<video autoplay playsInline muted />")
             .appendTo(participantNode);
