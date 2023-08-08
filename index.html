@@ -321,6 +321,12 @@
                 opCorrect = response['option_correct'];
             });
 
+            socket.on('total_user_mixer', function (response) {
+                if(response === 1 || response === "1"){
+                    
+                }
+            });
+
 
 
             socket.on('set_start', function (response) {
