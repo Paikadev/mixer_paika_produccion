@@ -41,7 +41,7 @@ body {
 }
 
 
-.video-container {
+.container-video {
   background: red;
   width: 320px;
   height: 525px;
@@ -193,10 +193,8 @@ body {
 
 
 
-video {
-  width: 100%;
-  height: auto;
-}
+
+
 
 .progress-bar {
 width: 300px;
