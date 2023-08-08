@@ -30,11 +30,14 @@ body {
   display: none;
 }
 
-.videos-container {
+#videos-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
+  background: #4A3B8B;
+  width: 640px;
+  height: 1050px;
 }
 
 #redDivContainer {
