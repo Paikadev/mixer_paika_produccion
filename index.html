@@ -322,6 +322,7 @@
             });
 
             socket.on('total_user_mixer', function (response) {
+                
                 if (response === 1 || response === "1") {
                     const containerVideo = document.querySelector('.container-video');
                     containerVideo.style.width = '640px';
