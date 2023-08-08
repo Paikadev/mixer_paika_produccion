@@ -45,6 +45,7 @@ body {
   background: red;
   width: 320px;
   height: 525px;
+  object-fit: cover;
 }
 
 #redDivContainer {
@@ -91,6 +92,7 @@ body {
   width: 70px;
   font-size: 55px;
 }
+
 #divTypePrompt {
   text-align: justify;
   text-align-last: center;
