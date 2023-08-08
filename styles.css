@@ -40,6 +40,12 @@ body {
   height: 1050px;
 }
 
+.video-container {
+  background: red;
+  width: 320px;
+  height: 525px;
+}
+
 #redDivContainer {
   display: flex;
   flex-direction: row;

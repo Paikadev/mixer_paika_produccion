@@ -386,27 +386,26 @@
         // Add the video stream to the web page
         const addVideoNode = (participant, stream) => {
             let participantNode = $("#participant-" + participant.id);
-            const divPadre = document.getElementById("videos-container")
-
-            if (!participantNode.length) {
-        
-                const hijo = document.createElement("div");
-                hijo.style.width = "320px";
-                hijo.style.height = "525px";
+            const divPadre = document.getElementById("videos-container");
+            const hijo = document.createElement("div");
                 hijo.id = "videos-container" + participant.id;
                 hijo.classList.add("video-container");
-                hijo.backgroundColor = "red"
+                divPadre.appendChild(hijo);
+            if (!participantNode.length) {
+        
+                
+                
         
         
                 participantNode = $("<div />")
                     .attr("id", "participant-" + participant.id)
                     .addClass("container")
-                    .appendTo("#videos-container" + participant.id);
+                    .appendTo("#videos-container");
         
                 $("<video autoplay playsInline muted />")
                     .appendTo(participantNode);
         
-                    divPadre.appendChild(hijo);
+                    
         
                
             }
