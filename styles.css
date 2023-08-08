@@ -27,7 +27,6 @@ body {
   width: 1900px;
   height: 1070px;
   background-color: black;
-  display: none;
 }
 
 .videos-container {
@@ -95,7 +94,46 @@ body {
   margin: 5px;
 }
 
-#columnaOptions {
+#op1 {
+  display: flex;
+  flex-direction: column;
+  margin: 9px;
+  background-color: #4A3B8B;
+  border-radius: 5px;
+  height: 70px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 33px;
+}
+
+#op2 {
+  display: flex;
+  flex-direction: column;
+  margin: 9px;
+  background-color: #4A3B8B;
+  border-radius: 5px;
+  height: 70px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 33px;
+}
+
+#op3 {
+  display: flex;
+  flex-direction: column;
+  margin: 9px;
+  background-color: #4A3B8B;
+  border-radius: 5px;
+  height: 70px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 33px;
+}
+
+#op4 {
   display: flex;
   flex-direction: column;
   margin: 9px;

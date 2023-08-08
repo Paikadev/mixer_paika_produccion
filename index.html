@@ -182,7 +182,7 @@
                 }
             });
             socket.on('set_winner', function (response) {
-               
+
                 const myDiv = document.getElementById("winnerImg");
                 const imgElement = document.createElement("img");
                 imgElement.src = response['img'];
@@ -202,7 +202,7 @@
                 socket.emit('join', data + '');
 
                 //socket.emit('join',data.result[0].idInteraction);
-                socket.to(data).emit('mixer_recording', {recording: 1});
+                socket.to(data).emit('mixer_recording', { recording: 1 });
 
             });
 
@@ -248,8 +248,37 @@
                 }
 
                 if (response['timer'] === 3) {
-                    
-                    
+
+                    if (op1 === opCorrect) {
+                        const divElement = document.getElementById('op1');
+                        divElement.style.backgroundColor = 'green';
+                    } else {
+                        const divElement = document.getElementById('op1');
+                        divElement.style.backgroundColor = 'red';
+                    }
+
+                    if (op2 === opCorrect) {
+                        const divElement = document.getElementById('op2');
+                        divElement.style.backgroundColor = 'green';
+                    } else {
+                        const divElement = document.getElementById('op2');
+                        divElement.style.backgroundColor = 'red';
+                    }
+                    if (op3 === opCorrect) {
+                        const divElement = document.getElementById('op3');
+                        divElement.style.backgroundColor = 'green';
+                    } else {
+                        const divElement = document.getElementById('op3');
+                        divElement.style.backgroundColor = 'red';
+                    }
+
+                    if (op4 === opCorrect) {
+                        const divElement = document.getElementById('op4');
+                        divElement.style.backgroundColor = 'green';
+                    } else {
+                        const divElement = document.getElementById('op4');
+                        divElement.style.backgroundColor = 'red';
+                    }
 
                 }
             });
@@ -259,21 +288,21 @@
                 op1 = response['option_1'];
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_1'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id=op1">' + response['option_1'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_2', function (response) {
-                op2 =response['option_2']
+                op2 = response['option_2']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_2'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op2">' + response['option_2'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
             socket.on('option_3', function (response) {
                 op3 = response['option_3']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_3'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op3">' + response['option_3'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
 
@@ -281,7 +310,7 @@
                 op4 = response['option_4']
                 var divElement = document.getElementById('divTypePrompt');
                 var contenidoActual = divElement.innerHTML;
-                var nuevoContenido = contenidoActual + '<div id="columnaOptions">' + response['option_4'] + '</div>';
+                var nuevoContenido = contenidoActual + '<div id="op4">' + response['option_4'] + '</div>';
                 divElement.innerHTML = nuevoContenido;
             });
 
@@ -311,20 +340,12 @@
             });
 
             socket.on('finish', function (response) {
-s
+                s
                 const redDivContainer = document.getElementById("redDivContainer");
                 if (redDivContainer) {
                     redDivContainer.remove();
                 }
                 document.getElementById('greenDiv').style.display = 'block';
-
-                
-
-
-                
-
-
-
 
             });
         };
