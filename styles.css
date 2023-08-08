@@ -35,7 +35,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
-  background: #4A3B8B;
+  background: black;
   width: 640px;
   height: 1050px;
 }
