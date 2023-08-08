@@ -39,7 +39,7 @@
     <div id="redDivContainer">
         <div class="redDiv" id="imgPrompt">
         </div>
-        <div class="redDiv videos-container" >
+        <div class="redDiv videos-container">
             <div id="videos-container"></div>
         </div>
         <div class="redDiv" id="divInfo" id="imgPrompt">
@@ -250,7 +250,7 @@
 
                 }
 
-                if (response['timer'] === 2 || response['timer'] === "2" ) {
+                if (response['timer'] === 2 || response['timer'] === "2") {
 
                     if (op1 === opCorrect) {
                         const divElement = document.getElementById('op1');
@@ -322,8 +322,17 @@
             });
 
             socket.on('total_user_mixer', function (response) {
-                if(response === 1 || response === "1"){
-                    
+                if (response === 1 || response === "1") {
+                    const containerVideo = document.querySelector('.container-video');
+
+                    containerVideo.style.width = '640px';
+                    containerVideo.style.height = '1050px';
+                }
+
+                if (response > 1 || response > "1") {
+                    const containerVideo = document.querySelector('.container-video');
+                    containerVideo.style.width = '320px';
+                    containerVideo.style.height = '525px';
                 }
             });
 
@@ -349,7 +358,7 @@
             });
 
             socket.on('finish', function (response) {
-                
+
                 const redDivContainer = document.getElementById("redDivContainer");
                 if (redDivContainer) {
                     redDivContainer.remove();
@@ -394,24 +403,24 @@
             let participantNode = $("#participant-" + participant.id);
             const divPadre = document.getElementById("videos-container");
             const hijo = document.createElement("div");
-                hijo.id = "videos-container" + participant.id;
-                hijo.classList.add("video-container");
-                //divPadre.appendChild(hijo);
+            hijo.id = "videos-container" + participant.id;
+            hijo.classList.add("video-container");
+            //divPadre.appendChild(hijo);
 
 
             if (!participantNode.length) {
-        
+
                 participantNode = $("<div />")
                     .attr("id", "participant-" + participant.id)
                     .addClass("container-video")
                     .appendTo("#videos-container");
-        
+
                 $("<video autoplay playsInline muted />")
                     .appendTo(participantNode);
-        
-                    
-        
-               
+
+
+
+
             }
 
             // Attach the stream to the video element
