@@ -151,6 +151,8 @@
             var op4 = "";
             var opCorrect = "";
 
+            var img = "";
+
             socket.on('connect', function () {
                 console.log('conectado!')
 
@@ -245,6 +247,7 @@
                     op3 = "";
                     op4 = "";
                     opCorrect = "";
+
                 }
 
                 if (response['timer'] === 3) {
