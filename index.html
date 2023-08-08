@@ -164,7 +164,7 @@
                 }
 
                 // Usage!
-                sleep(300).then(() => {
+                sleep(1800).then(() => {
                     // Do something after the sleep!
                     socket.emit('get_interaction_id', conferenceId);
                     console.log("Get id interaction with conference id " + conferenceId)
@@ -386,17 +386,28 @@
         // Add the video stream to the web page
         const addVideoNode = (participant, stream) => {
             let participantNode = $("#participant-" + participant.id);
+            const divPadre = document.getElementById("videos-container")
 
             if (!participantNode.length) {
+        
+                const hijo = document.createElement("div");
+                hijo.style.width = "320px";
+                hijo.style.height = "525px";
+                hijo.id = "videos-container" + participant.id;
+                hijo.classList.add("video-container");
+        
+        
                 participantNode = $("<div />")
                     .attr("id", "participant-" + participant.id)
                     .addClass("container")
-                    .appendTo("#videos-container");
-
+                    .appendTo("#videos-container" + participant.id);
+        
                 $("<video autoplay playsInline muted />")
                     .appendTo(participantNode);
-
-
+        
+                    divPadre.appendChild(hijo);
+        
+               
             }
 
             // Attach the stream to the video element
